@@ -1,0 +1,288 @@
+.main{
+    overflow: hidden;
+    background-color: rgb(10, 34, 63);
+    height: 100%;
+    padding: 40px 10px;
+}
+
+
+.login{
+    background : -moz-linear-gradient(89deg, #00BCD4 0%, #00BCD4 12%, #EE82EE 56%, #EE82EE 72%, #EE82EE 92%); 
+
+    /* safari 5.1+,chrome 10+ */
+    background : -webkit-linear-gradient(89deg, #00BCD4 0%, #00BCD4 12%, #927bdf 56%, #82bdee 72%, #8ca7d3 92%);
+
+    /* opera 11.10+ */
+    background : -o-linear-gradient(89deg, #00BCD4 0%, #00BCD4 12%, #927bdf 56%, #82bdee 72%, #8ca7d3 92%);
+
+    /* ie 6-9 */
+    filter : progid:DXImageTransform.Microsoft.gradient( startColorstr='#EE82EE', endColorstr='#00BCD4', GradientType=0 );
+
+    /* ie 10+ */
+    background : -ms-linear-gradient(89deg, #00BCD4 0%, #00BCD4 12%, #927bdf 56%, #82bdee 72%, #8ca7d3 92%);
+
+    /* global 94%+ browsers support */
+    background : linear-gradient(89deg, #00BCD4 0%, #00BCD4 12%, #927bdf 56%, #82bdee 72%, #8ca7d3 92%);
+
+    height: 100%;
+    overflow: scroll;
+    padding: 50px;
+    border-radius: 50px;
+    box-shadow: 1px 1px 30px rgb(176, 35, 35);
+    
+}
+
+.odd{
+    box-shadow: 1px 1px 5px rgb(98, 11, 11);
+    border-radius: 15px;
+    /* background-color: #6f3e6f; */
+    height: 100%;
+}
+
+.even{
+    box-shadow: 1px 1px 5px rgb(98, 11, 11);
+    border-radius: 15px;
+    height: 100%;
+}
+
+
+.loginButton{
+    text-align: center;
+    height: 100%;
+}
+
+.loginButton button{
+    text-align: center;
+    height: 100%;
+    width: 40%;
+    padding: 10px;
+    font-size: 30px;
+    background : linear-gradient(89deg, #00BCD4 0%, #00BCD4 12%, #EE82EE 56%, #EE82EE 72%, #EE82EE 92%);
+    font-weight: bold;
+    color: #ffffff;
+    font-family: sans-serif;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.loginButton :hover{
+    cursor: pointer;
+    box-shadow: 1px 1px 50px rgb(10, 32, 1);
+}
+
+
+
+
+@media only screen and (min-width: 1000px){
+
+    .login{
+        margin: 0px 30px;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 1px 1px 5px rgb(98, 11, 11);
+    }
+
+    .th1{
+        background-color: #063137;
+    }
+    
+    .th2{
+        background-color: #104d55; 
+    }
+    
+    .th3{
+        background-color: #063137; 
+    }
+    
+    .table{
+        /* align-items: center; */
+        visibility: visible;
+        height: 100%;
+        margin: 30px;
+        border-collapse: separate;
+        border-radius: 30px 30px 0 0;
+        border-spacing: 10px;
+    }
+
+    .Student li, .AcademicStaff li, .NonAcademicStaff li{
+        visibility: hidden;
+        height: 0px;
+    }
+    
+    #type{
+        visibility: hidden;
+        height: 0;
+    }
+
+    .table tr th{
+        box-shadow: 1px 1px 15px rgb(146, 20, 20);
+        font-size: 30px;
+        font-weight: bold;
+        font-family: 'Courier New', Courier, monospace;
+        color: rgb(255, 255, 255);
+        padding: 15px;
+        border-radius: 25px;
+    }
+
+    .table tr td{
+        color: #f8fafa;
+        font-size: 20px;
+        margin: 55px;
+        padding: 10px;
+        width: 380px;
+        text-align: center;
+        font-style: italic;
+        height: 60px;
+    }
+}
+
+@media only screen and (max-width: 1000px) and (min-width: 710px){
+    .th1{
+        background-color: #063137;
+    }
+    
+    .th2{
+        background-color: #104d55; 
+    }
+    
+    .th3{
+        background-color: #063137; 
+    }
+    
+   
+    .table{
+        visibility: visible;
+        height: 100%;
+        margin: 0px;
+        border-collapse: separate;
+        border-radius: 30px 30px 0 0;
+        border-spacing: 10px;
+    }
+
+    table tr th{
+        box-shadow: 1px 1px 15px rgb(146, 20, 20);
+        font-weight: bold;
+        font-family: 'Courier New', Courier, monospace;
+        color: rgb(255, 255, 255);
+        font-size: 25px;
+        padding: 10px;
+        border-radius: 25px;
+    }
+
+
+    .table tr td{
+        color: #f8fafa;
+        margin: 55px;
+        width: 380px;
+        text-align: center;
+        font-style: italic;
+        font-size: 18px;
+        padding: 5px;
+        height: 50px;
+    }
+
+    .login{
+        margin: 0px;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 1px 1px 5px rgb(98, 11, 11);
+    }
+
+    .Student li, .AcademicStaff li, .NonAcademicStaff li{
+        visibility: hidden;
+        height: 0px;
+    }
+    
+    #type{
+        visibility: hidden;
+        height: 0;
+    }
+} 
+
+
+@media only screen and (max-width: 710px) {
+    
+    .main{
+        background-color: rgb(10, 34, 63);
+        height: 100%;
+        padding: 30px;
+    } 
+
+    .login{
+        margin: 0px;
+        height: 100%;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    table{
+        display: block;
+        line-height:0;
+        height: 0;
+        overflow : hidden;
+    }
+    #type{
+        visibility: visible;
+        height: 45px;
+        background-color: white;
+        border-radius: 20px;
+        color: #105660;
+        padding: 5px;
+        width: 100%;
+    }
+
+    .odd, .even{
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .loginButton{
+        width: 100%;
+        margin: 5px;
+        font-size: 10px;
+    }
+    
+    loginButton button{
+        text-align: center;
+        height: 100px;
+        width: 100%;
+        display: inline-block;
+        overflow: hidden;
+    }
+
+    .Student li{
+        height: 100%;
+        margin: 10px;
+        text-align: center;
+        list-style-type: none;
+        padding: 10px;
+        box-shadow: 1px 1px 15px rgb(112, 10, 10);
+    }
+
+    .AcademicStaff, .NonAcademicStaff{
+        height: 0px;
+        visibility: hidden;
+    }
+
+    .AcademicStaff li{
+        height: 0px;
+        visibility: hidden;
+        height: 100%;
+        margin: 10px; 
+        text-align: center;
+        list-style-type: none;
+        padding: 10px;
+        box-shadow: 1px 1px 10px rgb(146, 20, 20);
+    }
+
+    /* .NonAcademicStaff li{
+        height: 0px;
+        visibility: hidden;
+        /* height: 100%; */
+        /* margin: 10px; */
+        /* text-align: center; */
+        /* list-style-type: none; */
+        /* padding: 10px; */
+        /* box-shadow: 1px 1px 10px rgb(146, 20, 20); */
+   /* } */
+}

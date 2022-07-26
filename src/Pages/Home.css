@@ -1,0 +1,48 @@
+
+
+ .root{
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+    --gradient-text : linear-gradient(89deg, #00BCD4 0%, #00BCD4 12%, #EE82EE 56%, #EE82EE 72%, #EE82EE 92%);
+  
+    
+    --color-bg : #040c18;
+    --color-footer : #031b34;
+    --color-text : #81afdd;
+    --color-subtext : #ff8a71;
+   }
+
+   .StudentHome{
+      height: 100%;
+      margin: 10px;
+   }
+
+   .stdInfo{
+      margin: auto 10px;
+      padding: 10px;
+      
+   }
+
+   .logoutbutton{
+      text-align: center;
+      height: 100%;
+      width: 150px;
+      padding: 10px;
+      font-size: 30px;
+      background : linear-gradient(89deg, #00BCD4 0%, #00BCD4 12%, #EE82EE 56%, #EE82EE 72%, #EE82EE 92%);
+      font-weight: bold;
+      color: #ffffff;
+      font-family: sans-serif;
+      border-radius: 10px;
+      margin: 10px;
+   }
+
+.logoutbutton :hover{
+      cursor: pointer;
+      box-shadow: 1px 1px 50px rgb(10, 32, 1);
+
+}
+.info_logout{
+   display: inline-block;
+}
+

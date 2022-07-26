@@ -1,0 +1,82 @@
+
+.root{
+   --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   
+   --gradient-text : linear-gradient(89deg, #00BCD4 0%, #00BCD4 12%, #EE82EE 56%, #EE82EE 72%, #EE82EE 92%);
+
+   
+   --color-bg : #040c18;
+   --color-footer : #031b34;
+   --color-text : #81afdd;
+   --color-subtext : #ff8a71;
+}
+
+.StudentHome{
+   height: 100%;
+   margin: 10px;
+}
+
+.stdInfo{
+   margin: auto 10px;
+   padding: 10px;
+   display: flex;
+   flex-direction: column;
+   
+}
+
+.logout-button{
+   text-align: center;
+   padding: 10px;
+   font-size: 20px;
+   background : linear-gradient(89deg, #00BCD4 0%, #00BCD4 12%, #EE82EE 56%, #EE82EE 72%, #EE82EE 92%);
+   font-weight: bold;
+   color: #ffffff;
+   font-family: sans-serif;
+   border-radius: 10px;
+   margin: 1px;
+   height: 55px;
+   width: 150px;
+   float:right;
+}
+
+.logout-button:hover, .btn:hover{
+   cursor: pointer;
+   box-shadow: 1px 1px 10px rgb(10, 32, 1);
+  
+}
+
+.h3{
+   float: left;
+   color: #968383;
+   font-size: 30px;
+   font-weight: bold;
+}
+
+.request{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.btn{
+   border-radius: 10px;
+   width: 500px;
+   height: 50px;
+   padding: 5px;
+   margin: 10px 0px;
+   background-color: #D9D9D9;
+   font-size: 20px;
+   font-weight: bold;
+   /* color: #81afdd; */
+   box-shadow: 1px 1px 10px #00BCD4;
+}
+
+.info_logout{
+   /* background-color: #00BCD4; */
+   height: 100px;
+}
+
+.main{
+   background-color: #eae7e7;
+}
+

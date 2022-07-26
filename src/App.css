@@ -1,0 +1,44 @@
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+a{
+    color: unset;
+    text-decoration: none;
+}
+
+.BGround{
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    /* ff 3.6+ */
+    /* background : -moz-linear-gradient(89deg, #00BCD4 0%, #00BCD4 12%, #EE82EE 56%, #EE82EE 72%, #EE82EE 92%);  */
+
+    /* safari 5.1+,chrome 10+ */
+    /* background : -webkit-linear-gradient(89deg, #00BCD4 0%, #00BCD4 12%, #EE82EE 56%, #EE82EE 72%, #EE82EE 92%); */
+
+    /* opera 11.10+ */
+    /* background : -o-linear-gradient(89deg, #00BCD4 0%, #00BCD4 12%, #EE82EE 56%, #EE82EE 72%, #EE82EE 92%); */
+
+    /* ie 6-9 */
+    /* filter : progid:DXImageTransform.Microsoft.gradient( startColorstr='#EE82EE', endColorstr='#00BCD4', GradientType=0 ); */
+
+    /* ie 10+ */
+    /* background : -ms-linear-gradient(89deg, #00BCD4 0%, #00BCD4 12%, #EE82EE 56%, #EE82EE 72%, #EE82EE 92%); */
+
+    /* global 94%+ browsers support */
+    /* background : linear-gradient(89deg, #00BCD4 0%, #00BCD4 12%, #EE82EE 56%, #EE82EE 72%, #EE82EE 92%); */
+}
+
+.App{
+    display: flex;
+    flex-direction: row;
+}

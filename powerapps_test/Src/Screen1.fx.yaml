@@ -1,0 +1,26 @@
+Screen1 As screen:
+    Fill: =RGBA(204, 208, 225, 1)
+
+    Button1 As button:
+        OnSelect: |-
+            =upload.Run({contentBytes :Last(file_attachment.Attachments.Value),file_attachment.Attachments.Name);
+        Text: ="Upload"
+        X: =607
+        Y: =406
+        ZIndex: =3
+
+    file_attachment As attachments:
+        BorderColor: =Black
+        IsInDataCard: =true
+        Items: =Blank()
+        MaxAttachments: =1
+        PaddingBottom: =5
+        PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+        PaddingRight: =5
+        PaddingTop: =5
+        Tooltip: =DisplayName
+        Width: =383
+        X: =512
+        Y: =40
+        ZIndex: =4
+

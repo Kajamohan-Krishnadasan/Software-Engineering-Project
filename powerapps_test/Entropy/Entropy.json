@@ -1,0 +1,55 @@
+{
+  "ComponentIndexes": {},
+  "ControlUniqueIds": {
+    "App": 1,
+    "Button1": 5,
+    "file_attachment": 4,
+    "Screen1": 3
+  },
+  "FunctionParamsInvariantScripts": {},
+  "FunctionParamsInvariantScriptsOnInstances": {},
+  "HeaderLastSavedDateTimeUTC": "08/04/2022 16:11:52",
+  "IsLegacyComponentAllowGlobalScopeCase": false,
+  "LocalConnectionIDReferences": {
+    "2d3db260-a3ca-405b-869a-0314c544ef0f": "\"/providers/microsoft.powerapps/apis/shared_logicflows/connections/e1b63c928ceb4ab8956b7e1d072b8971-8cdc9a5e5e96af13\"",
+    "5d570fdb-0110-43d1-a8d7-3ab22fb2d089": "\"/providers/microsoft.powerapps/apis/shared_sharepointonline/connections/62727671d5694fa99a8d90d4c7ae4dc1\"",
+    "b67ecf74-12d3-4257-9371-85588c8dcd1b": "\"/providers/microsoft.powerapps/apis/shared_logicflows/connections/4a19c1626bba432eb00a07247ea0dea8-8cdc9a5e5e96af13\""
+  },
+  "LocalDatabaseReferencesAsEmpty": false,
+  "LocalResourceFileNames": {},
+  "LocalResourceRootPaths": {},
+  "OrderComponentMetadata": {},
+  "OrderComponentTemplate": {},
+  "OrderDataSource": {
+    "test": 2,
+    "upload": 0,
+    "upload1": 1
+  },
+  "OrderGroupControls": {},
+  "OrderPcfTemplate": {},
+  "OrderTemplate": {},
+  "OrderXMLTemplate": {
+    "attachments": 0,
+    "button": 1
+  },
+  "PublishOrderIndices": {
+    "App": 0,
+    "Button1": 1,
+    "file_attachment": 0,
+    "Screen1": 0
+  },
+  "ResourcesJsonIndices": {},
+  "RuleScreenIdWithoutScreen": {},
+  "TemplateVersions": {},
+  "VolatileProperties": {
+    "AnalysisLoadTime": 0.0856621,
+    "ControlCount": {
+      "attachments": 1,
+      "button": 1,
+      "screen": 1
+    },
+    "DeserializationLoadTime": 1.0307277,
+    "ErrorCount": 11
+  },
+  "WasLocalDatabaseReferencesEmpty": true
+}

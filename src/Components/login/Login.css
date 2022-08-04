@@ -1,6 +1,7 @@
 .main{
     overflow: hidden;
     background-color: rgb(10, 34, 63);
+
     height: 100%;
     padding: 40px 10px;
 }
@@ -25,10 +26,12 @@
     background : linear-gradient(89deg, #00BCD4 0%, #00BCD4 12%, #927bdf 56%, #82bdee 72%, #8ca7d3 92%);
 
     height: 100%;
-    overflow: scroll;
+    /* overflow: scroll; */
     padding: 50px;
     border-radius: 50px;
     box-shadow: 1px 1px 30px rgb(176, 35, 35);
+    display: flex;
+    flex-direction: column;
     
 }
 
@@ -45,7 +48,6 @@
     height: 100%;
 }
 
-
 .loginButton{
     text-align: center;
     height: 100%;
@@ -53,7 +55,7 @@
 
 .loginButton button{
     text-align: center;
-    height: 100%;
+    /* height: 100%; */
     width: 40%;
     padding: 10px;
     font-size: 30px;
@@ -215,12 +217,14 @@
         border-radius: 5px;
     }
 
+    /* Hide table */
     table{
         display: block;
         line-height:0;
         height: 0;
         overflow : hidden;
     }
+
     #type{
         visibility: visible;
         height: 45px;
@@ -238,16 +242,15 @@
 
     .loginButton{
         width: 100%;
-        margin: 5px;
-        font-size: 10px;
+        margin: 5px; 
+        display: flex;   
     }
     
-    loginButton button{
+    .loginButton button{
         text-align: center;
-        height: 100px;
+        height: 100%;
         width: 100%;
-        display: inline-block;
-        overflow: hidden;
+        /* overflow: hidden; */
     }
 
     .Student li{
@@ -259,14 +262,13 @@
         box-shadow: 1px 1px 15px rgb(112, 10, 10);
     }
 
-    .AcademicStaff, .NonAcademicStaff{
+    /* .AcademicStaff, .NonAcademicStaff{
         height: 0px;
         visibility: hidden;
-    }
+    } */
 
-    .AcademicStaff li{
-        height: 0px;
-        visibility: hidden;
+    .academicStaff li{
+        height: 100%;
         height: 100%;
         margin: 10px; 
         text-align: center;
@@ -275,14 +277,13 @@
         box-shadow: 1px 1px 10px rgb(146, 20, 20);
     }
 
-    /* .NonAcademicStaff li{
-        height: 0px;
-        visibility: hidden;
-        /* height: 100%; */
-        /* margin: 10px; */
-        /* text-align: center; */
-        /* list-style-type: none; */
-        /* padding: 10px; */
-        /* box-shadow: 1px 1px 10px rgb(146, 20, 20); */
-   /* } */
+    .nonAcademicStaff li{
+        height: 100%;
+        height: 100%;
+        margin: 10px;
+        text-align: center;
+        list-style-type: none;
+        padding: 10px;
+        box-shadow: 1px 1px 10px rgb(146, 20, 20);
+   }
 }

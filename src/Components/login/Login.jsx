@@ -3,15 +3,6 @@ import ReactDOM from 'react-dom';
 import './Login.css';
 
 
-
-// const loginStudents = ()=>{
-//   window.location.href = "./Home";
-// }
-
-// const loginStaffs =()=>{
-
-// }
-
 const Student = ()=>{
   return (
     <ul className='Student'>
@@ -29,7 +20,7 @@ const Student = ()=>{
 
 const AcademicStaff =()=>{
   return(
-    <ul className='AcademicStaff'>
+    <ul className='academicStaff'>
       <li className='odd'>Approve/Reject Exam Reschedule</li>
       <li className='even'>Approve/Reject Exam Re-attempt</li>
       <li className='odd'>Approve/Reject Lab Reschedule</li>
@@ -39,7 +30,7 @@ const AcademicStaff =()=>{
 
 const NonAcademicStaff =()=>{
   return(
-    <ul className='NonAcademicStaff'>
+    <ul className='nonAcademicStaff'>
         <li className='odd'>Approve/Reject Exam Reschedule</li>
         <li className='even'>Approve/Reject Exam Re-attempt</li>
         <li className='odd'>Sent Studentship Confirm Letter</li>
@@ -101,21 +92,25 @@ const TableDisplay = ()=>{
         </table>
   );
 }
+
 const mobileView = ()=>{
  
-  if(document.getElementById("type").value === "Student"){
+  if(document.getElementById("type").value === "1"){
     ReactDOM.render(<Student/>, document.getElementById('typeDisplay'));
 
   }
 
-  if(document.getElementById("type").value === "AcademicStaff"){
+  if(document.getElementById("type").value === "2"){
     ReactDOM.render(<AcademicStaff/>, document.getElementById('typeDisplay'));
   }
 
-  if(document.getElementById("type").value === "NonAcademicStaff"){
+  if(document.getElementById("type").value === "3"){
     ReactDOM.render(<NonAcademicStaff/>, document.getElementById('typeDisplay'));
-
   }
+}
+
+const moblieLoad = ()=>{
+  ReactDOM.render(<Student/>, document.getElementById('typeDisplay'));
 }
 
 const Login = () => {
@@ -123,19 +118,18 @@ const Login = () => {
     <div className='main'>
       <div className='login'>
 
-        <select name="type" id="type" >
-          <option value="Student" onClick={mobileView} onChange={mobileView}>Student</option>
-          <option value="AcademicStaff">Academic Staff</option>
-          <option value="NonAcademicStaff">Non-Academic Staff</option>
+        <select name="type" id="type" onClick={mobileView} onChange={moblieLoad}>
+          <option value="1" >Student</option>
+          <option value="2">Academic Staff</option>
+          <option value="3">Non-Academic Staff</option>
         </select>
-        <div id='typeDisplay'></div>
-        {/* <Student/>
-        <AcademicStaff/>
-        <NonAcademicStaff/> */}
+
+        <div id='typeDisplay'> <Student/> </div>
+
         <TableDisplay/>
         <div className='loginButton'>
-          <button onClick={()=>{window.location.href= "/Home"}}>Student Sign in</button>
-          <button onClick={()=>{window.location.href= "/Home"}}>Staff Sign in</button>
+          <button onClick={()=>{window.location.href= "/StudentHome"}}>Student Sign in</button>
+          <button onClick={()=>{window.location.href= "/StaffHome"}}>Staff Sign in</button>
         </div>      
       </div>
       

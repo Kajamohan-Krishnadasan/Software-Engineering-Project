@@ -1,16 +1,33 @@
 import React from 'react'
-import '../general.css';
-import './LoginPage.css';
-import logo from '../assets/logo.png';
+import '../general.css'
+import './LoginPage.css'
+import logo from '../assets/logo.png'
 
 const LoginPage = () => {
+    
     const year = ()=>{
         let VarDate = new Date().getFullYear();
 
         return VarDate;
     }
-    const Load_Microsoft_Page = ()=>{
+    
+    const Student = ()=>{
         window.location.href='/StudentHome';
+        let type = "Student";
+        sessionStorage.setItem("PathName", type)
+    }
+    
+    const Academic_Staff = ()=>{
+        window.location.href='/StaffHome';
+        let type = "Academic_Staff";
+        sessionStorage.setItem("PathName", type)
+    }
+    
+    const Non_Academic_Staff = ()=>{
+        window.location.href='/StaffHome';
+        let type = "Non_Academic_Staff";
+        sessionStorage.setItem("PathName", type)
+
     }
 
   return (
@@ -23,13 +40,15 @@ const LoginPage = () => {
             <div className='Main-Background'>
                 <div className="Content-Background">
                    
-                    
+                
 
-                    <button className="Sign-In-Button" onClick={Load_Microsoft_Page}>Sign in with Microsoft</button>
+                <button className="Sign-In-Button" onClick={Student}>Sign in with Microsoft</button>
+                <button className="Sign-In-Button" onClick={Academic_Staff}>Sign in with Microsoft</button>
+                <button className="Sign-In-Button" onClick={Non_Academic_Staff}>Sign in with Microsoft</button>
                 </div>
             </div>
 
-            <div className='Footer'>© Copyright {year()} UNIVERSITY OF JAFFNA.</div>
+            <div className='Footer'>© Copyright {year()} University of Jaffna.</div>
         </div>
     </div>
   )

@@ -1,9 +1,8 @@
-import React from 'react';
-import '../general.css';
-import './StaffHomePage.css';
-import logo from '../assets/logo.png';
+import React from 'react'
+import './general.css';
+import logo from './assets/logo.png';
 
-const StaffHomePage = () => {
+const General = () => {
     const year = ()=>{
         let VarDate = new Date().getFullYear();
 
@@ -12,13 +11,12 @@ const StaffHomePage = () => {
     const Staff_Name = () =>{
         return "Staff";
     } 
+    
     const Logout = ()=>{
         window.location.href='/'
     }
-    const set_Flow = ()=>{     
-        window.location.href='/StaffHome/SetWorkFlow'
-    }
 
+    
   return (
     <div className='main'>
         <div className='Background'>
@@ -32,17 +30,14 @@ const StaffHomePage = () => {
                         <div className="Welcome-Name"> Welcome {Staff_Name()}</div>
                         <button className="logout-button buttons-hover" onClick={Logout}>Logout</button>
                     </div>
-                    <button onClick={set_Flow} className="buttons-hover Buttons-Background Buttton-text Create-Document-Flow-Path">Create Document Flow Path</button>
-                    <button className="buttons-hover Buttons-Background Buttton-text View-Request-button">View Requests <i className='Status Color-Green'></i></button>
-                    <button className="buttons-hover Buttons-Background Buttton-text Approved-Request-button">Approved Requests<i className='Status Color-Blue'></i></button>
-                    <button className="buttons-hover Buttons-Background Buttton-text Rejected-Request-button">Rejected Requests<i className='Status Color-Red'></i></button>
                 </div>
             </div>
 
             <div className='Footer'>© Copyright {year()} University of Jaffna.</div>
         </div>
+        
     </div>
   )
 }
 
-export default StaffHomePage
+export default General

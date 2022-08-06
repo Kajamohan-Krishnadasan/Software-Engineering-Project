@@ -1,5 +1,6 @@
 import React from 'react'
 import '../general.css';
+import './MakeRequest.css';
 import logo from '../assets/logo.png';
 
 const MakeRequest = () => {
@@ -33,11 +34,20 @@ const MakeRequest = () => {
                         <div className="Welcome-Name"> Welcome {Student_Name()}</div>
                         <button className="logout-button buttons-hover" onClick={Logout}>Logout</button>
                     </div>
-                    <button onClick={Back}> Home</button>
+                    <button className='Home-Button buttons-hover' onClick={Back}> Home</button>
+
+                    <div className="Request-Background a"><span className='text'> Exam Reshedule</span> <button className='Check-Requirements A buttons-hover'>Check Requirements</button> <button className='Request A buttons-hover'>Request</button></div>
+                    <div className="Request-Background b"><span className='text'> Exam Re-attempt</span> <button className='Check-Requirements A buttons-hover'>Check Requirements</button> <button className='Request A buttons-hover'>Request</button></div>
+                    <div className="Request-Background c"><span className='text'> Labratory Session Reshedule</span> <button className='Check-Requirements A buttons-hover'>Check Requirements</button> <button className='Request A buttons-hover'>Request</button></div>
+                    <div className="Request-Background d"><span className='text'> Requesting Studentship Confirmation Letter</span> <button className='Check-Requirements A buttons-hover'>Check Requirements</button> <button className='Request A buttons-hover'>Request</button></div>
+                    <div className="Request-Background e"><span className='text'> Requesting Progress Report</span> <button className='Check-Requirements A buttons-hover'>Check Requirements</button> <button className='Request A buttons-hover'>Request</button></div>
+                    <div className="Request-Background f"><span className='text'> Requesting for New Student Record Book</span> <button className='Check-Requirements A buttons-hover'>Check Requirements</button> <button className='Request A buttons-hover'>Request</button></div>
+                    <div className="Request-Background g"><span className='text'> Requesting for New Student ID card</span> <button className='Check-Requirements A buttons-hover'>Check Requirements</button> <button className='Request A buttons-hover'>Request</button></div>
+                    
                 </div>
             </div>
 
-            <div className='Footer'>© Copyright {year()} UNIVERSITY OF JAFFNA.</div>
+            <div className='Footer'>© Copyright {year()} University of Jaffna.</div>
         </div>
         
     </div>

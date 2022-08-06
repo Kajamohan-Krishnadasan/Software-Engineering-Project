@@ -45,7 +45,7 @@ const StudentHomePage = () => {
                 </div>
             </div>
 
-            <div className='Footer'>© Copyright {year()} UNIVERSITY OF JAFFNA.</div>
+            <div className='Footer'>© Copyright {year()} University of Jaffna.</div>
         </div>
         
     </div>

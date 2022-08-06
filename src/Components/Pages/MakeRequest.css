@@ -1,0 +1,78 @@
+.Request-Background{
+    /* Request Background */
+
+    position: absolute;
+    width: 1097px;
+    height: 58px;
+    left: 173px;
+
+    background: rgba(98, 189, 255, 0.5);
+    border-radius: 13px;
+}
+
+.a{
+    top: 127px;
+}
+
+.b{
+    top: 201px;
+}
+
+.c{
+    top: 275px;
+}
+
+.d{
+    top: 349px;
+}
+
+.e{
+    top: 423px;
+}
+
+.f{
+    top: 497px;
+}
+
+.g{
+    top: 571px;
+}
+
+.Check-Requirements{
+    cursor: pointer;
+    position: absolute;
+    width: 260px;
+    height: 40px;
+    left: 565px;
+    font-size: 25px;
+    background: #FFE296;
+    /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); */
+    border-radius: 10px;
+}
+
+.Request{
+    cursor: pointer;
+    position: absolute;
+    width: 204px;
+    height: 40px;
+    right: 35px;
+    font-size: 25px;
+    background: #BCFFBB;
+    /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); */
+    border-radius: 10px;
+}
+
+.A{
+    top: 9px;
+}
+
+
+.text{
+    position: absolute;
+    width: 534px;
+    height: 58px;
+    left: 23px;
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+}

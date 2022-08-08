@@ -14,19 +14,15 @@ const LoginPage = () => {
     const Student = ()=>{
         window.location.href='/StudentHome';
         let type = "Student";
-        sessionStorage.setItem("PathName", type)
+        sessionStorage.setItem("type", type)
     }
     
     const Academic_Staff = ()=>{
-        window.location.href='/StaffHome';
-        let type = "Academic_Staff";
-        sessionStorage.setItem("PathName", type)
+        window.location.href='/AproversPage';
     }
     
     const Non_Academic_Staff = ()=>{
         window.location.href='/StaffHome';
-        let type = "Non_Academic_Staff";
-        sessionStorage.setItem("PathName", type)
 
     }
 
@@ -42,9 +38,9 @@ const LoginPage = () => {
                    
                 
 
-                <button className="Sign-In-Button" onClick={Student}>Sign in with Microsoft</button>
-                <button className="Sign-In-Button" onClick={Academic_Staff}>Sign in with Microsoft</button>
-                <button className="Sign-In-Button" onClick={Non_Academic_Staff}>Sign in with Microsoft</button>
+                <button className="Sign-In-Button Button-1" onClick={Student}>Sign in as Student</button>
+                <button className="Sign-In-Button Button-2" onClick={Academic_Staff}>Sign in as Academic Staff</button>
+                <button className="Sign-In-Button Button-3" onClick={Non_Academic_Staff}>Sign in as Asst.Registrar</button>
                 </div>
             </div>
 

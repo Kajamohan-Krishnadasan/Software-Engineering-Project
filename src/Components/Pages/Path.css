@@ -1,20 +1,19 @@
-#Path-Area{
-    position: absolute;
-    top: 170px;
-    left: 100px;
-    padding: 10px;
-    font-size: 35px;
-    line-break: anywhere;
-    line-height: 60px;
-    /* background-color: rgb(211, 205, 217); */
-    display: flex;
-    flex-direction: column;
+.AddPathTitle{
+    position: relative;
+    top: 110px;
+    margin-top: 15px;
+    text-align: center;
+    width: 100%;
     
+    font-size: 40px;
+    color: rgb(8, 73, 73);
+
 }
+
 
 .Add-Button{
     position: absolute;
-    top: 125px;
+    top: 180px;
     left: 400px;
     font-size: 35px;
     font-weight: 500;
@@ -26,7 +25,7 @@
 
 .Remove-Button{
     position: absolute;
-    top: 125px;
+    top: 180px;
     left:570px;
     font-size: 35px;
     font-weight: 500;
@@ -36,9 +35,9 @@
     border-radius: 22px;
 }
 
-.Submit-Button{
+.Path-Submit-Button{
     position: absolute;
-    top: 125px;
+    top: 180px;
     left: 730px;
     font-size: 35px;
     font-weight: 500;
@@ -52,9 +51,23 @@
 .buttons-hover:hover{
     box-shadow: 4px 4px 1px rgba(17, 27, 83, 0.522);
 }
+#Path-Area{
+    position: absolute;
+    top: 220px;
+    left: 100px;
+    padding: 10px;
+    font-size: 35px;
+    line-break: anywhere;
+    line-height: 60px;
+    /* background-color: rgb(211, 205, 217); */
+    display: flex;
+    flex-direction: column;
+    
+}
+
 #Select-Persons{
     position: absolute;
-    top: 125px;
+    top: 180px;
     left: 100px;
     padding: 10px;
     font-size: 25px;
@@ -71,3 +84,4 @@ Box{
     height: 80px;
     text-align: center; 
 }
+

@@ -8,7 +8,6 @@ const StudentHomePage = () => {
  
     const year = ()=>{
         let VarDate = new Date().getFullYear();
-
         return VarDate;
     }
 
@@ -19,8 +18,15 @@ const StudentHomePage = () => {
     const Logout = ()=>{
         window.location.href='/'
     }
+
     const make_a_request = ()=>{     
         window.location.href='/StudentHome/MakeRequest'
+    }
+
+    const Get_Status = (StatusType)=>{
+        sessionStorage.setItem("StatusType",StatusType)
+        sessionStorage.setItem("MainHome","StudentHome")
+        window.location.href='/StatusRequest'
     }
     
   return (
@@ -37,10 +43,9 @@ const StudentHomePage = () => {
                         <button className="logout-button buttons-hover" onClick={Logout}>Logout</button>
                     </div>
                     <button onClick={make_a_request} className="buttons-hover Buttons-Background Buttton-text Make-a-Request-Button">Make a Request</button>
-                    <button className="buttons-hover Buttons-Background Buttton-text Ongoing-Request-Button">Ongoing Requests <i className='Status Color-Green'></i></button>
-                    <button className="buttons-hover Buttons-Background Buttton-text Approved-Request-Button">Approved Requests<i className='Status Color-Blue'></i></button>
-                    <button className="buttons-hover Buttons-Background Buttton-text Rejected-Request-Button">Rejected Requests<i className='Status Color-Red'></i></button>
-
+                    <button className="buttons-hover Buttons-Background Buttton-text Ongoing-Request-Button" onClick={()=>Get_Status("Ongoing Requests")}>Ongoing Requests <i className='Status Color-Green'></i></button>
+                    <button className="buttons-hover Buttons-Background Buttton-text Approved-Request-Button" onClick={()=>Get_Status("Approved Requests")}>Approved Requests<i className='Status Color-Blue'></i></button>
+                    <button className="buttons-hover Buttons-Background Buttton-text Rejected-Request-Button" onClick={()=>Get_Status("Rejected Requests")}>Rejected Requests<i className='Status Color-Red'></i></button>
                     
                 </div>
             </div>

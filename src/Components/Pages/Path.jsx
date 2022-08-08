@@ -1,7 +1,8 @@
 import React from 'react'
 import logo from '../assets/logo.png'
-
 import './Path.css'
+
+import {PathOnSubmit} from '../Firebase/functions'
 
 const Path = () => {
     const year = ()=>{
@@ -17,7 +18,7 @@ const Path = () => {
         window.location.href='/'
     }
 
-    const Back = ()=>{
+    const Home = ()=>{
         window.location.href='/StaffHome'
     }
 
@@ -25,13 +26,13 @@ const Path = () => {
 
     let i = 1;
     let Approvers = [];
-    let noOfApprover = 1;
+    let noOfApprover = 0;
     
     const add_Persons = ()=>{
         let PathArea = document.getElementById("Path-Area");
         let SelectPersons = document.getElementById('Select-Persons').value;
         
-        if(SelectPersons !== "Default" ){ 
+        if(SelectPersons !== "Default" && i<7){ 
             Approvers.push(SelectPersons);
             PathArea.innerHTML += "<div>" + i + "<sup> th </sup>Approver  : " + SelectPersons+ "</div>";
             noOfApprover++;
@@ -49,6 +50,11 @@ const Path = () => {
 
         }
     }
+
+
+    async function handleSubmit(){
+        PathOnSubmit(pathName, noOfApprover, Approvers);
+    }
     
 
   return (
@@ -64,8 +70,8 @@ const Path = () => {
                     <div className="Welcome-Name"> Welcome {Staff_Name()}</div>
                     <button className="logout-button buttons-hover" onClick={Logout}>Logout</button>
                 </div>
-                <button className='Home-Button buttons-hover' onClick={Back}> Home</button>
-                <div className='AddPathTitle'> </div>
+                <button className='Home-Button buttons-hover' onClick={Home}> Home</button>
+                <div className='AddPathTitle'>{pathName} </div>
                 <select Id='Select-Persons'>
                     <option value="Default">Select the Staff</option>
                     <option value="Asst.Registrar"> Asst.Registrar</option>
@@ -77,7 +83,7 @@ const Path = () => {
                 <button className='Add-Button buttons-hover' onClick={add_Persons} >Add +</button>
                 <button className='Remove-Button buttons-hover' onClick={remove_Persons} >Remove</button>
                 
-                <button className='Submit-Button buttons-hover' >Submit</button>
+                <button className='Path-Submit-Button buttons-hover' onClick={handleSubmit}>Submit</button>
                 <div id='Path-Area'>
                     
                 </div>

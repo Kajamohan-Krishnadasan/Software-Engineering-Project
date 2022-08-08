@@ -1,19 +1,27 @@
 import React from 'react'
-import './general.css'
-import logo from './assets/logo.png'
+import '../general.css'
+import './StatusRequest.css'
+import logo from '../assets/logo.png'
 
-const General = () => {
+const StatusRequest = () => {
+    let StatusType = sessionStorage.getItem("StatusType");
+    let MainHome = sessionStorage.getItem("MainHome");
+
+
     const year = ()=>{
         let VarDate = new Date().getFullYear();
 
         return VarDate;
     }
-    const Staff_Name = () =>{
-        return "Staff";
+    const Set_Name = () =>{
+        return "name";
     } 
     
     const Logout = ()=>{
         window.location.href='/'
+    }
+    const Home = ()=>{
+        window.location.href='/'+ MainHome
     }
 
     
@@ -27,9 +35,11 @@ const General = () => {
             <div className='Main-Background'>
                 <div className="Content-Background">
                     <div className="welcome-with-Logout-button">
-                        <div className="Welcome-Name"> Welcome {Staff_Name()}</div>
+                        <div className="Welcome-Name"> Welcome {Set_Name()}</div>
                         <button className="logout-button buttons-hover" onClick={Logout}>Logout</button>
                     </div>
+                    <button className='Home-Button buttons-hover' onClick={Home}> Home</button>
+                    <h1 className='Status-Heading'>{StatusType} </h1>
                 </div>
             </div>
 
@@ -40,4 +50,4 @@ const General = () => {
   )
 }
 
-export default General
+export default StatusRequest

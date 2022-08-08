@@ -3,9 +3,7 @@
 
 
     position: absolute;
-    width: 612px;
     height: 83px;
-    left: 418px;
     bottom: 19px;
     background: #00ADEE;
     box-shadow: 7px 11px 7px rgba(0, 0, 0, 0.25);
@@ -17,4 +15,17 @@
 
 .Sign-In-Button:hover{
     box-shadow:10px 10px 5px rgba(6, 15, 65, 0.76);
+}
+
+.Button-1{
+    left: 100px;
+    width: 300px;
+}
+.Button-2{
+    left: 450px;
+    width: 400px;
+}
+.Button-3{
+    left: 900px;
+    width: 400px;
 }

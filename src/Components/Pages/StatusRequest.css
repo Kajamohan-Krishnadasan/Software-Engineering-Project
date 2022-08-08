@@ -1,0 +1,9 @@
+.Status-Heading{
+    position: relative;
+    top: 120px;
+    margin-top: 15px;
+    text-align: center;
+    width: 100%;
+    font-size: 40px;
+    color: rgb(8, 73, 73);
+}

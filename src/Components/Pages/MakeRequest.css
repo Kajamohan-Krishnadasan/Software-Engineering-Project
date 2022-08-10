@@ -76,3 +76,36 @@
     align-items: center;
     font-size: 25px;
 }
+
+#Popup{
+    position: relative;
+    visibility: hidden;
+    top: 125px;
+    left: 400px;
+    background-color: aliceblue;
+    height: 500px;
+    width: 800px;
+    border-radius: 20px;
+    
+    box-shadow:0px 0px 55px 20px rgb(140, 64, 217);
+}
+#Popup h1{
+    position: relative;
+    text-align: center;
+    color: #0b4a0a;
+    top: 25px;
+}
+.Popup-Close{
+    position: absolute;
+    top: 350px;
+    left: 300px;
+    background-color: aliceblue;
+    height: 100px;
+    width: 200px;
+    font-size: 50px;
+    font-weight: 500;
+    border-radius: 20px;
+    
+    
+}
+

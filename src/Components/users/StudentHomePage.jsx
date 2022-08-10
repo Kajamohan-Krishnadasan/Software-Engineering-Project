@@ -12,8 +12,7 @@ const StudentHomePage = () => {
     }
 
     const Student_Name = ()=>{
-        return "Student";
-    }
+        return  sessionStorage.getItem("Username")    }
 
     const Logout = ()=>{
         window.location.href='/'
@@ -42,6 +41,7 @@ const StudentHomePage = () => {
                         <div className="Welcome-Name"> Welcome {Student_Name()}</div>
                         <button className="logout-button buttons-hover" onClick={Logout}>Logout</button>
                     </div>
+
                     <button onClick={make_a_request} className="buttons-hover Buttons-Background Buttton-text Make-a-Request-Button">Make a Request</button>
                     <button className="buttons-hover Buttons-Background Buttton-text Ongoing-Request-Button" onClick={()=>Get_Status("Ongoing Requests")}>Ongoing Requests <i className='Status Color-Green'></i></button>
                     <button className="buttons-hover Buttons-Background Buttton-text Approved-Request-Button" onClick={()=>Get_Status("Approved Requests")}>Approved Requests<i className='Status Color-Blue'></i></button>

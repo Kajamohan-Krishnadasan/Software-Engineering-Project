@@ -1,9 +1,10 @@
 import React from 'react';
 import '../general.css';
-import './StaffHomePage.css';
+import './ApproversPage.css';
 import logo from '../assets/logo.png';
 
-const StaffHomePage = () => {
+
+const AproversPage = () => {
     const year = ()=>{
         let VarDate = new Date().getFullYear();
         return VarDate;
@@ -12,18 +13,14 @@ const StaffHomePage = () => {
     const Staff_Name = () =>{
         return sessionStorage.getItem("Username")
     } 
-
+    
     const Logout = ()=>{
         window.location.href='/'
     }
 
-    const set_Flow = ()=>{     
-        window.location.href='/StaffHome/SetWorkFlow'
-    }
-
     const Get_Status = (StatusType)=>{
         sessionStorage.setItem("StatusType",StatusType)
-        sessionStorage.setItem("MainHome","StaffHome")
+        sessionStorage.setItem("MainHome","AproversPage")
         window.location.href='/StaffHome/Status'
     }
 
@@ -40,10 +37,9 @@ const StaffHomePage = () => {
                         <div className="Welcome-Name"> Welcome {Staff_Name()}</div>
                         <button className="logout-button buttons-hover" onClick={Logout}>Logout</button>
                     </div>
-                    <button className="buttons-hover Buttons-Background Buttton-text Create-Document-Flow-Path" onClick={set_Flow}>Create Document Flow Path</button>
-                    <button className="buttons-hover Buttons-Background Buttton-text Ongoing-Request-Button" onClick={()=>Get_Status("New Requests")}>New Requests <i className='Status Color-Green'></i></button>
-                    <button className="buttons-hover Buttons-Background Buttton-text Approved-Request-Button" onClick={()=>Get_Status("Approved Requests")}>Approved Requests<i className='Status Color-Blue'></i></button>
-                    <button className="buttons-hover Buttons-Background Buttton-text Rejected-Request-Button" onClick={()=>Get_Status("Rejected Requests")}>Rejected Requests<i className='Status Color-Red'></i></button>
+                    <button className="buttons-hover Buttons-Background Buttton-text Aprover-Ongoing-Request-button" onClick={()=>Get_Status("New Requests")}>New Requests <i className='Approver-Status Color-Green'></i></button>
+                    <button className="buttons-hover Buttons-Background Buttton-text Aprover-Approved-Request-button" onClick={()=>Get_Status("Approved Requests")}>Approved Requests<i className='Approver-Status Color-Blue'></i></button>
+                    <button className="buttons-hover Buttons-Background Buttton-text Aprover-Rejected-Request-button" onClick={()=>Get_Status("Rejected Requests")}>Rejected Requests<i className='Approver-Status Color-Red'></i></button>
 
                 </div>
             </div>
@@ -54,4 +50,4 @@ const StaffHomePage = () => {
   )
 }
 
-export default StaffHomePage
+export default AproversPage

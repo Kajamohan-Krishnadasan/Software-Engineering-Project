@@ -1,0 +1,31 @@
+.Aprover-Ongoing-Request-button{
+    position: absolute;
+    top: 160px; 
+    height: 100px;
+    font-size: 55px;
+}
+
+.Aprover-Approved-Request-button{
+    position: absolute;
+    top: 310px;
+    height: 100px;
+    font-size: 55px;
+}
+
+.Aprover-Rejected-Request-button{
+    top: 460px;
+    height: 100px;
+    
+    font-size: 55px;
+}
+
+.Approver-Status{
+    /* Status */
+
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    right: 20px;
+    top: 22px;
+    border-radius: 42px;
+}

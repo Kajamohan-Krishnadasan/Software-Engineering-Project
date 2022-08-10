@@ -1,15 +1,17 @@
 import React from 'react'
 import '../general.css'
-import './StatusRequest.css'
+import './ApproversStatusPage.css'
 import logo from '../assets/logo.png'
-import { readDocuments } from '../Firebase/upload'
 
-const StatusRequest = () => {
+import { readDocumentsStaff, submitStaff } from '../Firebase/upload'
+
+const  ApproversStatusPage = () => {
     let StatusType = sessionStorage.getItem("StatusType");
     let MainHome = sessionStorage.getItem("MainHome");
     let Username = sessionStorage.getItem("Username");
-    let status="";
-    if(StatusType === "Ongoing Requests")
+    let UserMail =  sessionStorage.getItem("UserMail");
+    let status = "";
+    if(StatusType === "New Requests")
         status ="Processing";
     else if(StatusType === "Approved Requests")
         status = "Approved";
@@ -32,14 +34,31 @@ const StatusRequest = () => {
     const Home = ()=>{
         window.location.href='/'+ MainHome
     }
+    let id = [];
+    const submit=(e)=>{
+        let decisions = document.getElementsByClassName("SetStatus");
+        let comments = document.getElementsByClassName("Comment");
+
+        console.log(id[e]);
+        if(decisions[e].value !== "Default"){
+            submitStaff(id[e], decisions[e].value,comments[e].value ,UserMail);
+        }else{
+            alert("Please select Approve or Reject  !!!");
+        }
+
+    }
+
 
     const handleSubmit= async()=>{
-        let Display = document.getElementById("Display");
+        let Display = document.getElementById("Staff-Display-Area");
+        
         try {
-            let fileLists = await readDocuments(Username, status);
+            let fileLists = await readDocumentsStaff(UserMail, status);;
             
             if(fileLists.length > 0){
-                for(let i = 0; i<fileLists.length; i++){
+                for(let i = 0; i < fileLists.length; i++){
+                    id.push(fileLists[i].File_URL);
+                    Display.innerHTML += `<br/><p> Requester : ${ fileLists[i].Requester_Mail}</p>`;
                     Display.innerHTML += `<p> Request Type : ${ fileLists[i].Request_Type}</p>`;
                     Display.innerHTML += `Document : <a className='Status-liink'  href = '${ fileLists[i].File_URL}'> Click Here... </a>`;
                     Display.innerHTML += `<br/>
@@ -56,18 +75,34 @@ const StatusRequest = () => {
                                 </tr> 
                             </table>`;
                     }
-                    Display.innerHTML += `<hr/>`
+                    Display.innerHTML += `<div class="Input-Area">
+                    <textarea class="Comment" name="Remarks" rows="4" cols="50" maxlength="300" placeholder="Enter Your Remarks"></textarea>
+                        <select name="SetStatus" class="SetStatus">
+                                <option value="Default" >Approve / Reject</option>
+                                <option value="Approved">Approve </option>
+                                <option value="Rejected">Reject</option>
+                        </select> 
+                        <button class="Status-buttons-hover Status-Submit-Button"  >submit</button> </div`;
                 }
+                let butonsTotal = document.getElementsByClassName("Status-Submit-Button");
+
+                for (let i = 0; i < butonsTotal.length; i++) {
+                    butonsTotal[i].addEventListener("click",()=>submit(i));
+                }
+
+
             }else{
-                Display.innerHTML += "<h1 class=\"Aprover-Display\"> No Request Found !!!</h1>"  
+                Display.innerHTML += `<h1 class="Aprover-Display"> No Request Found !!!</h1>`  
             }
 
         } catch (error) {
-            Display.innerHTML += "<h1 class=\"Aprover-Display\"> No Request Found !!!</h1>" 
+            console.log(error)
+            // Display.innerHTML += `<h1 class="Aprover-Display"> No Request Found !!!</h1>` 
         }
         
     }
 
+    
     
   return (
     <div className='main' onLoad={handleSubmit}>
@@ -85,7 +120,7 @@ const StatusRequest = () => {
                     <button className='Home-Button buttons-hover' onClick={Home}> Home</button>
                     <h1 className='Status-Heading'>{StatusType} </h1>
 
-                    <div id="Display">
+                    <div id="Staff-Display-Area">
 
                     </div>
                 </div>
@@ -98,4 +133,4 @@ const StatusRequest = () => {
   )
 }
 
-export default StatusRequest
+export default ApproversStatusPage

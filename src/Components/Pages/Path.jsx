@@ -1,8 +1,8 @@
-import React from 'react'
-import logo from '../assets/logo.png'
-import './Path.css'
+import React from 'react';
+import logo from '../assets/logo.png';
+import './Path.css';
 
-import {PathOnSubmit} from '../Firebase/functions'
+import {PathOnSubmit} from '../Firebase/functions';
 
 const Path = () => {
     const year = ()=>{
@@ -11,18 +11,24 @@ const Path = () => {
     }
 
     const Staff_Name = () =>{
-        return "Staff";
+        return sessionStorage.getItem("Username");
     } 
     
     const Logout = ()=>{
-        window.location.href='/'
+        window.location.href='/';
     }
 
     const Home = ()=>{
-        window.location.href='/StaffHome'
+        window.location.href='/StaffHome';
     }
 
     let pathName = sessionStorage.getItem("PathName");
+
+    const hide_reset_button=()=>{
+        document.getElementsByClassName("Remove-Button")[0].style="visibility: hidden";
+        document.getElementsByClassName("Path-Submit-Button")[0].style="left:570px";
+        
+    }
 
     let i = 1;
     let Approvers = [];
@@ -32,11 +38,16 @@ const Path = () => {
         let PathArea = document.getElementById("Path-Area");
         let SelectPersons = document.getElementById('Select-Persons').value;
         
-        if(SelectPersons !== "Default" && i<7){ 
+        if(SelectPersons !== "Default" && i<7){
+            document.getElementsByClassName("Remove-Button")[0].style="visibility: visible"
+            document.getElementsByClassName("Path-Submit-Button")[0].style="left:730px"
+             
             Approvers.push(SelectPersons);
             PathArea.innerHTML += "<div>" + i + "<sup> th </sup>Approver  : " + SelectPersons+ "</div>";
             noOfApprover++;
             i++; 
+        }else{
+            alert("Please Select the Staff")
         }
     }
 
@@ -58,7 +69,7 @@ const Path = () => {
     
 
   return (
-    <div className='main'>
+    <div className='main' onLoad={hide_reset_button}>
     <div className='Background'>
         <div className='Header'>
             <img  src={logo} alt="University Logo"  className='Logo'/>

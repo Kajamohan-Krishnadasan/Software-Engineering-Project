@@ -1,40 +1,27 @@
-import React, { useState } from 'react'
+import React,{useState} from 'react'
 import '../general.css'
 import logo from '../assets/logo.png'
 import './SubmitRequest.css'
-import { getPath} from '../Firebase/functions'
-import {HandleUpload} from '../Firebase/upload'
-// import {ref} from "firebase/storage"
+import { getPath} from '../Firebase/functions.js'
+import { upload } from '../Firebase/upload.js'
+
+import { isValidInput } from '../Auth/CheckFunction'
  
 const SubmitRequest = () => {
+    const [file, setFile] = useState(null);
+    let ApproversList = [];
 
     let RequestName = sessionStorage.getItem("RequestName")
-
-    async function handleSubmit(){   
-        let ApproversName = document.getElementById("Approvers-Name")  
-        try {
-            let ApproverNames = await getPath(RequestName)
-           
-            for (let index = 0; index < ApproverNames.length; index++) {
-                ApproversName.innerHTML += "<h1 className=\"Aprover-Display\"> "+ApproverNames[index]+" : </h1>";
-                ApproversName.innerHTML += " <input type=\"email\" placeholder=\"Enter the Email \"/>";
-            
-            }  
-            
-        } catch (error) {
-            ApproversName.innerHTML += "<h1 className=\"Aprover-Display\"> No Path Found !!!</h1>";   
-        }
-    }
-
+    let Username = sessionStorage.getItem("Username")
+    
     const year = ()=>{
         let VarDate = new Date().getFullYear()
         return VarDate
     }
 
     const Student_Name = ()=>{
-        return "Student";
+        return Username
     }
-    
     const Logout = ()=>{
         window.location.href='/'
     }
@@ -42,17 +29,54 @@ const SubmitRequest = () => {
     const Back = ()=>{
         window.location.href='/StudentHome'
     }
-    const [file, setFile] = useState("");
 
-    const Change_Handeler = (e)=>{
-        setFile(e.target.files[0]);
-        console.log(file.length);
+    async function handleSubmit(){   
+        let ApproversName = document.getElementById("Approvers-Name")  
+        try {
+            let ApproverNames = await getPath(RequestName)
+           
+            for (let index = 0; index < ApproverNames.length; index++) {
+                ApproversName.innerHTML += "<h1 className=\"Aprover-Display\"> "+ApproverNames[index]+" : </h1>"
+                ApproversName.innerHTML += " <input type=\"email\" required placeholder=\"Enter the Email \"/>"
+            
+            }  
+            
+        } catch (error) {
+            ApproversName.innerHTML += "<h1 className=\"Aprover-Display\"> No Path Found !!!</h1>" 
+        }
     }
 
-    const submit_document =()=>{
-        HandleUpload(file);
     
+
+    const handleChange= (event)=> {
+        setFile(event.target.files[0]);
     }
+
+    const handleUpload = ()=> {
+        let Approvers_Mail = document.getElementsByTagName("input");
+        let Arraylength = Approvers_Mail.length;
+        ApproversList = []
+        for (let index = 1; index < Arraylength; index++) {
+            ApproversList.push(Approvers_Mail[index].value)
+        }
+
+        if (!file){
+            alert("Please choose a file first!")
+        }else if(!isValidInput(ApproversList)){
+            alert("Please Enter the Valid Mail!")
+        }else {
+            upload(file, Username ,ApproversList, RequestName).then(clear_field)
+        }   
+    }
+    
+    const clear_field =()=>{
+        let inputs = document.getElementsByTagName("input");
+        for (let index = 0; index < inputs.length; index++) {
+            inputs[index].value = "";
+            
+        }
+    }
+
 
 
   return (
@@ -73,12 +97,13 @@ const SubmitRequest = () => {
             </div>
             <div>
                 <h1 className='Heading'>{RequestName} </h1>
-                <form className='Form-Label'>
+                <div className='Form-Label'>
                     <label htmlFor="Submit-File" className='File-Label'>Upload Document :</label>
-                    <input type="file" id='File-Input' onChange={Change_Handeler}/> 
-                </form>
+                    <input type="file" id='File-Input'  onChange={handleChange}/> 
+                </div>
 
-                <button className='Document-Submit-Button buttons-hover' onClick={submit_document}> Submit</button> 
+                <button className='Document-Submit-Button buttons-hover' onClick={handleUpload}> Submit</button> 
+                
                 <div id="Approvers-Name">
                         
                 </div>

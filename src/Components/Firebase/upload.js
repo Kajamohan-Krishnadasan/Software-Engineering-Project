@@ -1,6 +1,6 @@
 import { ref, uploadBytesResumable, getDownloadURL} from "firebase/storage"
 import { storage, db} from "../../firebase"
-import { collection, addDoc, doc, updateDoc, getDocs, query, where,getDoc } from "firebase/firestore" 
+import { collection, addDoc, doc, updateDoc, getDocs, query, where, getDoc } from "firebase/firestore" 
 
 async function upload(file, requester, approvers, Request_Type){
   await upload_document(file, requester, approvers, Request_Type);
@@ -48,7 +48,7 @@ async function upload_document_Details(url, approvers, requester,Request_Type){
   });
 }
 
-// ongoing Request
+// ongoing Request / Apporoved Request / Reject Request Student Side
 async function readDocuments(requester,status){
   const q = query(collection(db,"Documents"),where("Requester_Mail","==",requester),where("File_Status","==",status));
   const querySnapshot = await getDocs(q);
@@ -60,16 +60,48 @@ async function readDocuments(requester,status){
   return temp;
 }
 
-async function submitStaff(doc_Id,decision,comment,staff){ 
+
+
+// ongoing Request / Apporoved Request / Reject Request Staffs Side
+async function readDocumentsStaff(staff, status){
+  const q = query(collection(db,"Documents"));
+  const querySnapshot = await getDocs(q);
+  let temp = [];
+  querySnapshot.forEach((doc)=> {
+    
+    for(let i=0; i<doc.data().Approvers.length;i++){
+      
+      if(doc.data().Approvers[i] === staff && doc.data().Status[i] === status){
+        temp.push( doc.data()); 
+      }
+    }
+    });
+  return temp
+}
+
+// set the Document status
+async function submitStaff(doc_Id, decision, comment, staff){ 
+  const q = query(collection(db,"Documents"),where("File_URL","==",doc_Id));
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc)=>{
+    doc_Id= doc.id;
+    
+  })
+  
+   
   const washingtonRef = await doc(db, "Documents", doc_Id);
+
   const docSnap = await getDoc(washingtonRef);
   for(let i=0;i<docSnap.data().Approvers.length;i++){
-    if(docSnap.data().Approvers[i]===staff){  
+
+    if(docSnap.data().Approvers[i]===staff && docSnap.data().Status[i]==="Processing"){  
         let com=docSnap.data().Comment;
         let st=docSnap.data().Status;
         let fSt=docSnap.data().File_Status;
         com[i]=comment;
         if(decision==="Approved"){
+          st[i]="Approved";
+          
           if((i+1)===docSnap.data().Approvers.length){
             fSt="Approved";
           }
@@ -81,15 +113,49 @@ async function submitStaff(doc_Id,decision,comment,staff){
           st[i]="Rejected";
           fSt="Rejected";
         }
+        
         await updateDoc(washingtonRef, {
-          Comment:com,
+         // Comment:com,
           Status:st,
           File_Status:fSt
         });
       }
   }
+  alert("Finished!!!")
 }
 
+
+
+async function log(email,role,password){
+  let temp=[];
+  if(role==="Academic Staff"){
+    role="Staff";
+  }
+  if(role==="Non-Academic Staff"){
+    role="AR"
+  }
+  const q = query(collection(db,"Users"),where("UserMail","==",email),where("Password","==",password),where("Role","==",role));
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc)=>{
+    temp.push( doc.data());
+  })
+  
+  if(temp.length===1 && role ==="Student"){
+
+    window.location.href='/StudentHome'
+  }
+  else if(temp.length===1 && role ==="Staff"){
+
+    window.location.href='/AproversPage'
+  }
+  else if(temp.length===1 && role ==="AR"){
+ 
+    window.location.href='/StaffHome'
+  }
+  else{
+    alert("Iinvalid Password or Email!!!");
+  }
+}
 
 // async function readApprovedDocuments(requester){
 //   const q = query(collection(db, "Documents"),where("Requester_Mail","==",requester),where("File_Status","==","Approved"));
@@ -114,4 +180,4 @@ async function submitStaff(doc_Id,decision,comment,staff){
 
 
 
-export {upload, readDocuments}
+export {upload, readDocuments,readDocumentsStaff, submitStaff, log}

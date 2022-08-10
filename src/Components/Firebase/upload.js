@@ -139,10 +139,12 @@ async function log(email,role,password){
   querySnapshot.forEach((doc)=>{
     temp.push( doc.data());
   })
-  
+  let userName = await getName(email);
+  sessionStorage.setItem("Username",userName );
   if(temp.length===1 && role ==="Student"){
 
     window.location.href='/StudentHome'
+    
   }
   else if(temp.length===1 && role ==="Staff"){
 
@@ -157,6 +159,16 @@ async function log(email,role,password){
   }
 }
 
+async function getName(email){
+  let name="";
+  const q = query(collection(db,"Users"),where("UserMail","==",email));
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc)=>{
+    name=doc.data().Username;
+  })
+  console.log(name);
+  return name;
+}
 // async function readApprovedDocuments(requester){
 //   const q = query(collection(db, "Documents"),where("Requester_Mail","==",requester),where("File_Status","==","Approved"));
 //   const querySnapshot = await getDocs(q);
@@ -180,4 +192,4 @@ async function log(email,role,password){
 
 
 
-export {upload, readDocuments,readDocumentsStaff, submitStaff, log}
+export {upload, readDocuments,readDocumentsStaff, submitStaff, log, getName}

@@ -58,7 +58,7 @@ const Login = (props) => {
     if(hide === true){
       setHide(false)
     }
-    
+    window.location.reload()
   }
 
   return (

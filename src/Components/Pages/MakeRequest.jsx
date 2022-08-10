@@ -91,7 +91,7 @@ const MakeRequest = () => {
                     <div className="Request-Background g">
                         <span className='text'> Requesting for New Student ID card</span> 
                         <button className='Check-Requirements A buttons-hover' onClick={() =>PopUp_Display("Requesting for New Student ID card")}>Check Requirements</button>
-                        <button className='Request A buttons-hover'  onClick={()=>Submit_Request(" Requesting New Student ID card")}>Request</button>
+                        <button className='Request A buttons-hover'  onClick={()=>Submit_Request("Requesting New Student ID card")}>Request</button>
                     </div>
                     <div id='Popup'>
                     <h1>{RequestName}</h1>

@@ -10,6 +10,7 @@ async function PathOnSubmit(pathName,noOfApprover,Approvers){
         NumberOfApproves:  noOfApprover,
         Approver: Approvers
     })
+    alert("Successfully Submitted");
 
 }
 

@@ -15,27 +15,27 @@ const LoginPage = () => {
     const Student = ()=>{
         // window.location.href='/Login'
         let type = "Student"
-        let Username = "Naif"
+        // let Username = "Naif"
         sessionStorage.setItem("type", type)
-        sessionStorage.setItem("Username", Username)
+        // sessionStorage.setItem("Username", Username)
         bgHide();
       }
     
     const Academic_Staff = ()=>{
         // window.location.href='/Login'
         let type = "Academic Staff"
-        let Username = "Supun"
+        // let Username = "Supun"
         sessionStorage.setItem("type", type)
-        sessionStorage.setItem("Username", Username)
+        // sessionStorage.setItem("Username", Username)
         bgHide();
     }
     
     const Non_Academic_Staff = ()=>{
         // window.location.href='/Login'
         let type = "Non-Academic Staff"
-        let Username = "Kajamohan"
+        // let Username = "Kajamohan"
         sessionStorage.setItem("type", type)
-        sessionStorage.setItem("Username", Username)
+        // sessionStorage.setItem("Username", Username)
         bgHide();
     }
     const bgHide=()=>{

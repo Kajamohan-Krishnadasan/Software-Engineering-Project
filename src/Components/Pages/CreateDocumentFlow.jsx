@@ -1,100 +1,135 @@
-import React from 'react'
-import '../general.css';
-import './CreateDocumentFlow.css';
-import logo from '../assets/logo.png';
-
+import React, { useEffect, useState } from "react";
+import "../general.css";
+import "./CreateDocumentFlow.css";
+import logo from "../assets/logo.png";
+import Loading from "./Loading";
+import { useNavigate } from "react-router-dom";
 
 const MakeRequest = () => {
-    const year = ()=>{
-        let VarDate = new Date().getFullYear();
+  const [isLoading, setIsLoading] = useState(false);
+  const navigation = useNavigate();
+  const year = () => {
+    let VarDate = new Date().getFullYear();
 
-        return VarDate;
-    }
-    const Staff_Name = () =>{
-        return sessionStorage.getItem("Username")
-    } 
-    
-    const Logout = ()=>{
-        window.location.href='/'
-    }
+    return VarDate;
+  };
 
-    const Home = ()=>{
-        window.location.href='/StaffHome'
+  useEffect(() => {
+    if (sessionStorage.getItem("Username") === null) {
+      navigation("/");
+    } else {
+      sessionStorage.setItem("MainHome", sessionStorage.getItem("MainHome"));
     }
+  }, [navigation]);
 
-    const Path = (pathName)=>{
-        window.location.href='/StaffHome/SetWorkFlow/Path'
-        sessionStorage.setItem("PathName", pathName)
+  const Staff_Name = () => {
+    return sessionStorage.getItem("Username");
+  };
 
-    }
-    
+  const Logout = () => {
+    setIsLoading(true);
+
+    sessionStorage.clear();
+    localStorage.clear();
+    navigation("/");
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  };
+
+  const Home = () => {
+    setIsLoading(true);
+    navigation("/Non-Acc-Staff-Home");
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  };
+
+  const setPath = (pathName) => {
+    setIsLoading(true);
+    navigation("/Non-Acc-Staff-Home/SetWorkFlow/Path");
+    sessionStorage.setItem("PathName", pathName);
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  };
+
+  const updatePath = (pathName) => {
+    // setIsLoading(true);
+    // navigation("/Non-Acc-Staff-Home/SetWorkFlow/Path");
+    // sessionStorage.setItem("PathName", pathName);
+    // setTimeout(() => {
+    //   setIsLoading(false);
+    // }, 2000);
+  };
+
+  const requestNames = [
+    "Exam Reshedule",
+    "Exam Re-attempt",
+    "Labratory Session Reshedule",
+    "Requesting Studentship Confirmation Letter",
+    "Requesting Progress Report",
+    "Requesting for New Student Record Book",
+    "Requesting for New Student ID card",
+  ];
+
   return (
-    <div className='main'>
-        <div className='Background'>
-            <div className='Header'>
-                <img  src={logo} alt="University Logo"  className='Logo'/>
-                <div className='title'>Welcome to Student Document Approval System </div> 
-            </div>
-            <div className='Main-Background'>
-                <div className="Content-Background">
-                    <div className="welcome-with-Logout-button">
-                        <div className="Welcome-Name"> Welcome {Staff_Name()}</div>
-                        <button className="logout-button buttons-hover" onClick={Logout}>Logout</button>
-                    </div>
-                    <button className='Home-Button buttons-hover' onClick={Home}> Home</button>
-
-                    <div className="Request-Background a">
-                        <span className='text'> Exam Reshedule</span> 
-                        {/* <button className='Update-Modify-Button A buttons-hover'>Update/Modify</button> */}
-                        <button className='Set-Button A buttons-hover' onClick={()=>Path("Exam Reshedule")} >Set</button>
-                    </div>
-
-                    <div className="Request-Background b">
-                        <span className='text'> Exam Re-attempt</span> 
-                        {/* <button className='Update-Modify-Button A buttons-hover'>Update/Modify</button>  */}
-                        <button className='Set-Button A buttons-hover' onClick={()=>Path("Exam Re-attempt")} >Set</button>
-                    </div>
-                    
-                    <div className="Request-Background c">
-                        <span className='text'> Labratory Session Reshedule</span> 
-                        {/* <button className='Update-Modify-Button A buttons-hover'>Update/Modify</button>  */}
-                        <button className='Set-Button A buttons-hover' onClick={()=>Path("Labratory Session Reshedule")} >Set</button>
-                    </div>
-                    
-                    <div className="Request-Background d">
-                        <span className='text'> Requesting Studentship Confirmation Letter</span> 
-                        {/* <button className='Update-Modify-Button A buttons-hover'>Update/Modify</button>  */}
-                        <button className='Set-Button A buttons-hover' onClick={()=>Path("Requesting Studentship Confirmation Letter")} >Set</button>
-                    </div>
-                    
-                    <div className="Request-Background e">
-                        <span className='text'> Requesting Progress Report</span> 
-                        {/* <button className='Update-Modify-Button A buttons-hover'>Update/Modify</button>  */}
-                        <button className='Set-Button A buttons-hover' onClick={()=>Path("Requesting Progress Report")} >Set</button>
-                    </div>
-                    
-                    <div className="Request-Background f">
-                        <span className='text'> Requesting for New Student Record Book</span> 
-                        {/* <button className='Update-Modify-Button A buttons-hover'>Update/Modify</button>  */}
-                        <button className='Set-Button A buttons-hover' onClick={()=>Path("Requesting New Student Record Book")} >Set</button>
-                    </div>
-                    
-                    <div className="Request-Background g">
-                        <span className='text'> Requesting for New Student ID card</span> 
-                        {/* <button className='Update-Modify-Button A buttons-hover'>Update/Modify</button>  */}
-                        <button className='Set-Button A buttons-hover' onClick={()=>Path("Requesting New Student ID card")} >Set</button>
-                    </div>
-                    
-
-
-                </div>
-            </div>
-
-            <div className='Footer'>© Copyright {year()} University of Jaffna.</div>
+    <div className="main">
+      {isLoading && <Loading />}
+      <div className="Background">
+        <div className="Header">
+          <img src={logo} alt="University Logo" className="Logo" />
+          <div className="title">
+            Welcome to Student Document Approval System{" "}
+          </div>
         </div>
-        
-    </div>
-  )
-}
 
-export default MakeRequest
+        <div className="Main-Background">
+          <div className="Content-Background">
+          <div className="welcome-with-Logout-button">
+              <button className="btn btn-success" onClick={Home}>
+                Home
+              </button>
+              <div className="Welcome-Name"> Welcome {Staff_Name()}</div>
+
+              <button className="btn btn-danger" onClick={Logout}>
+                Logout
+              </button>
+            </div>
+
+            {requestNames.map((item, index) => {
+              return (
+                <div className="Request-Background" key={index}>
+                  <div className="text"> {item}</div>
+
+                  <div className="d-flex gap-4 pe-4">
+                    <button
+                      className="btn btn-warning px-4"
+                      onClick={updatePath(item)}
+                    >
+                      Update/Modify
+                    </button>
+
+                    <button
+                      className="btn btn-primary px-4"
+                      onClick={() => setPath(item)}
+                    >
+                      Set
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="Footer">© Copyright {year()} University of Jaffna.</div>
+      </div>
+    </div>
+  );
+};
+
+export default MakeRequest;

@@ -1,22 +1,34 @@
 // import * as firebase from "firebase/app"
-import { initializeApp } from "firebase/app"
-import { getAuth } from "firebase/auth"
-import { getStorage } from "firebase/storage"
-import { getFirestore } from "firebase/firestore"
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getStorage } from "firebase/storage";
+import { getFirestore } from "firebase/firestore";
 
+// const firebaseConfigNife = {
+//   apiKey: "AIzaSyD2jbQ-IpxgK97bHhcnKXiP3sVkTjErAAg",
+//   authDomain: "studentdocumentapprovalsystem.firebaseapp.com",
+//   databaseURL:
+//     "https://studentdocumentapprovalsystem-default-rtdb.firebaseio.com",
+//   projectId: "studentdocumentapprovalsystem",
+//   storageBucket: "studentdocumentapprovalsystem.appspot.com",
+//   messagingSenderId: "654356979884",
+//   appId: "1:654356979884:web:276c5b7b87f40c1d93ff09",
+//   measurementId: "G-WGMGT7RD26",
+// };
+
+// Your web app's Firebase configuration
+// Kajamohan
+// gs://student-document-approval-uoj.appspot.com
 const firebaseConfig = {
-
-  apiKey: "AIzaSyD2jbQ-IpxgK97bHhcnKXiP3sVkTjErAAg",
-  authDomain: "studentdocumentapprovalsystem.firebaseapp.com",
-  databaseURL: "https://studentdocumentapprovalsystem-default-rtdb.firebaseio.com",
-  projectId: "studentdocumentapprovalsystem",
-  storageBucket: "studentdocumentapprovalsystem.appspot.com",
-  messagingSenderId: "654356979884",
-  appId: "1:654356979884:web:276c5b7b87f40c1d93ff09",
-  measurementId: "G-WGMGT7RD26"
-
+  apiKey: "AIzaSyAqmMkHQHROCG3IhHfMfLaVlewbqIN0dzw",
+  authDomain: "student-document-approval-uoj.firebaseapp.com",
+  databaseURL:
+    "https://student-document-approval-uoj-default-rtdb.firebaseio.com",
+  projectId: "student-document-approval-uoj",
+  storageBucket: "student-document-approval-uoj.appspot.com",
+  appId: "1:440037393399:web:0052a2bdadd6a5e49924f2",
+  messagingSenderId: "440037393399",
 };
-
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -26,4 +38,4 @@ const db = getFirestore(app);
 
 // const uid = auth.currentUser?.uid;
 
-export  {db, auth, app, storage};
+export { db, auth, app, storage };

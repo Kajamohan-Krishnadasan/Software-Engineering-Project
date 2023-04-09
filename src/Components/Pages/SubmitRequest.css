@@ -1,77 +1,38 @@
-.Heading{
-    position: relative;
-    /* left: 100px; */
-    top: 350px;
-    margin-top: 15px;
-    text-align: center;
-    width: 100%;
-    /* height: 50px; */
-    font-size: 40px;
-    color: rgb(8, 73, 73);
+.Heading {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 40px;
+  color: rgb(8, 73, 73);
 }
 
-.Form-Label{
-    position: relative;
-    height: 70px;
-    width: 800px;
-    padding: 30px;
-    background-color: rgb(194, 203, 203);
-    border-radius: 10px;
-    top: 360px;
-    left: 150px;
-    display: flex;
-    flex-direction: row;
-    overflow: hidden;
-    
+.Form-Label {
+  height: 70px;
+  /* width: 800px; */
+  padding: 30px;
+  background-color: rgb(194, 203, 203);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
 }
-.File-Label{
-    position: absolute;
-    top:20px;
-    height: 70px;
-    font-size: 30px;
-    font-weight: 500;
-    vertical-align: middle;
+.File-Label {
+  height: 70px;
+  font-size: 30px;
+  font-weight: 500;
+  vertical-align: middle;
 }
 
-#File-Input{
-    position: absolute;
-    top:20px;
-    left: 350px;
-    height: 70px;
-    font-size: 30px;
-    font-weight: 500;
-
+#File-Input {
+  height: 70px;
+  font-size: 30px;
+  font-weight: 500;
 }
 
-#Approvers-Name{
-    position: relative;
-    left: 200px;
-    top: 300px;
-    font-size: 12px;
-    padding: 10px;
+#Approvers-Name {
+  font-size: 12px;
+  padding: 10px;
 }
 
-#Approvers-Name h1{
-    height: 25px;
-}
-
-input{
-    position: relative;
-    left: 260px;
-    top:-25px;
-    height: 30px;
-    font-size: 20px;
-}
-
-.Document-Submit-Button {
-    position: relative;
-    top:290px;
-    left: 1050px;
-    height: 70px;
-    font-size: 30px;
-    font-weight: 500;
-    background-color: #90caf9;
-    width: 150px;
-    border-radius: 22px;
+#Approvers-Name h1 {
+  height: 25px;
 }
 

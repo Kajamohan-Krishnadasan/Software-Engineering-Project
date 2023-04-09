@@ -1,98 +1,72 @@
-.Sign-In-Button{
-    /* Rectangle 4 */
-
-
-    position: absolute;
-    height: 83px;
-    bottom: 19px;
-    background: #00ADEE;
-    box-shadow: 7px 11px 7px rgba(0, 0, 0, 0.25);
-    border-radius: 20px;
-    font-weight: 700;
-    font-size: 30px;
-    text-align: center;
+.th1 {
+  background-color: #063137;
 }
 
-.Sign-In-Button:hover{
-    box-shadow:10px 10px 5px rgba(6, 15, 65, 0.76);
+.th2 {
+  background-color: #104d55;
 }
 
-.Button-1{
-    left: 100px;
-    width: 300px;
-}
-.Button-2{
-    left: 450px;
-    width: 400px;
-}
-.Button-3{
-    left: 900px;
-    width: 400px;
+.th3 {
+  background-color: #063137;
 }
 
-
-.th1{
-    background-color: #063137;
+.login-table {
+  border-collapse: separate;
+  border-radius: 30px 30px 0 0;
+  border-spacing: 10px;
 }
 
-.th2{
-    background-color: #104d55; 
+.login-table tr th {
+  font-size: 30px;
+  font-weight: bold;
+  font-family: "Courier New", Courier, monospace;
+  color: rgb(255, 255, 255);
+  padding: 12px;
+  border-radius: 25px;
 }
 
-.th3{
-    background-color: #063137; 
-}
-.login-table{
-
-    position: absolute;
-    align-items: center;
-    margin: 20px;
-    left: 100px;
-    border-collapse: separate;
-    border-radius: 30px 30px 0 0;
-    border-spacing: 10px;
+.login-table tbody tr td {
+  color: #205e5e;
+  font-size: 20px;
+  padding: 8px;
+  width: 380px;
+  text-align: center;
+  font-style: italic;
+  height: 45px;
+  box-shadow: 0px 0px 4px rgb(0, 0, 0);
 }
 
-
-.login-table tr th{
-    box-shadow: 1px 1px 15px rgb(146, 20, 20);
-    font-size: 30px;
-    font-weight: bold;
-    font-family: 'Courier New', Courier, monospace;
-    color: rgb(255, 255, 255);
-    padding: 12px;
-    border-radius: 25px;
-    
+.odd {
+  border-radius: 15px;
+  height: 100%;
 }
 
-.login-table tr td{
-    color: #205e5e;
-    font-size: 20px;
-    padding: 8px;
-    width: 380px;
-    text-align: center;
-    font-style: italic;
-    height: 45px;
+.even {
+  /* box-shadow: 1px 1px 5px rgb(98, 11, 11); */
+  border-radius: 15px;
+  height: 100%;
 }
 
-/* .bg{
-    background : linear-gradient(89deg, #00BCD4 0%, #00BCD4 12%, #EE82EE 56%, #EE82EE 72%, #EE82EE 92%);
-    
-} */
-
-.odd{
-    box-shadow: 1px 1px 5px rgb(98, 11, 11);
-    border-radius: 15px;
-    /* background-color: #6f3e6f; */
-    height: 100%;
+.buttons-sets {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin: 1rem;
 }
 
-.even{
-    box-shadow: 1px 1px 5px rgb(98, 11, 11);
-    border-radius: 15px;
-    height: 100%;
+.buttons-sets button {
+  font-size: 1.5rem;
+  background: #00adee;
+  border: none;
+  margin: 0.5rem 1rem;
+  border-radius: 1rem;
+  padding: 1rem 1rem;
+  color: white;
+  cursor: pointer;
+  width: 100%;
 }
 
-#Login-Popup{
-    position: relative;
+.buttons-sets button:hover {
+  box-shadow: 0px 0px 10px rgb(0, 0, 0);
 }

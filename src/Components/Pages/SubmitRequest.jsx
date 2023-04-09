@@ -1,119 +1,210 @@
-import React,{useState} from 'react'
-import '../general.css'
-import logo from '../assets/logo.png'
-import './SubmitRequest.css'
-import { getPath} from '../Firebase/functions.js'
-import { upload } from '../Firebase/upload.js'
+import React, { useEffect, useState } from "react";
+import "../general.css";
+import logo from "../assets/logo.png";
+import "./SubmitRequest.css";
+import { getPath } from "../Firebase/functions.js";
+import { upload } from "../Firebase/upload.js";
 
-import { isValidInput } from '../Auth/CheckFunction'
- 
+import { isValidInput } from "../Auth/CheckFunction";
+import Loading from "./Loading";
+import { useNavigate } from "react-router-dom";
+
 const SubmitRequest = () => {
-    const [file, setFile] = useState(null);
-    let ApproversList = [];
+  const [isLoading, setIsLoading] = useState(false);
+  const navigation = useNavigate();
+  let MainHome = sessionStorage.getItem("MainHome");
+  const [file, setFile] = useState(null);
+  let ApproversList = [];
+  const [ApproverNames, setApproverNames] = useState([]);
 
-    let RequestName = sessionStorage.getItem("RequestName")
-    let Username = sessionStorage.getItem("Username")
-    
-    const year = ()=>{
-        let VarDate = new Date().getFullYear()
-        return VarDate
+  let RequestName = sessionStorage.getItem("RequestName");
+  let Username = sessionStorage.getItem("Username");
+
+  const year = () => {
+    let VarDate = new Date().getFullYear();
+    return VarDate;
+  };
+
+  const Student_Name = () => {
+    return Username;
+  };
+
+  window.onload = async () => {
+    let ApproverNamesDetails = await displayApprovers();
+    setApproverNames(ApproverNamesDetails);
+  };
+
+  const displayApprovers = async () => {
+    setIsLoading(true);
+    try {
+      let ApproverNamesDetails = await getPath(RequestName);
+
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
+
+      return ApproverNamesDetails;
+    } catch (error) {
+      console.log(error);
+
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
+      return [];
+    }
+  };
+
+  useEffect(() => {
+    if (sessionStorage.getItem("Username") === null) {
+      navigation("/");
+    } else {
+      sessionStorage.setItem("MainHome", sessionStorage.getItem("MainHome"));
+
+      // console.log(ApproverNames);
+    }
+  }, [navigation]);
+
+  const Logout = () => {
+    setIsLoading(true);
+
+    sessionStorage.clear();
+    localStorage.clear();
+    navigation("/");
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  };
+
+  const Back = () => {
+    setIsLoading(true);
+    navigation(MainHome);
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  };
+
+  const handleChange = (event) => {
+    setIsLoading(true);
+    setFile(event.target.files[0]);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  };
+
+  const handleUpload = async () => {
+    setIsLoading(true);
+
+    let Approvers_Mail = document.getElementsByTagName("input");
+    let Arraylength = Approvers_Mail.length;
+    ApproversList = [];
+    for (let index = 1; index < Arraylength; index++) {
+      ApproversList.push(Approvers_Mail[index].value);
     }
 
-    const Student_Name = ()=>{
-        return Username
-    }
-    const Logout = ()=>{
-        window.location.href='/'
-    }
-
-    const Back = ()=>{
-        window.location.href='/StudentHome'
-    }
-
-    async function handleSubmit(){   
-        let ApproversName = document.getElementById("Approvers-Name")  
-        try {
-            let ApproverNames = await getPath(RequestName)
-           
-            for (let index = 0; index < ApproverNames.length; index++) {
-                ApproversName.innerHTML += "<h1 className=\"Aprover-Display\"> "+ApproverNames[index]+" : </h1>"
-                ApproversName.innerHTML += " <input type=\"email\" required placeholder=\"Enter the Email \"/>"
-            
-            }  
-            
-        } catch (error) {
-            ApproversName.innerHTML += "<h1 className=\"Aprover-Display\"> No Path Found !!!</h1>" 
-        }
+    if (!file) {
+      alert("Please choose a file first!");
+    } else if (!isValidInput(ApproversList)) {
+      alert("Please Enter the Valid Mail!");
+    } else {
+      await upload(file, Username, ApproversList, RequestName).then(
+        clear_field
+      );
     }
 
-    
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  };
 
-    const handleChange= (event)=> {
-        setFile(event.target.files[0]);
+  const clear_field = () => {
+    setIsLoading(true);
+
+    let inputs = document.getElementsByTagName("input");
+    for (let index = 0; index < inputs.length; index++) {
+      inputs[index].value = "";
     }
 
-    const handleUpload = ()=> {
-        let Approvers_Mail = document.getElementsByTagName("input");
-        let Arraylength = Approvers_Mail.length;
-        ApproversList = []
-        for (let index = 1; index < Arraylength; index++) {
-            ApproversList.push(Approvers_Mail[index].value)
-        }
-
-        if (!file){
-            alert("Please choose a file first!")
-        }else if(!isValidInput(ApproversList)){
-            alert("Please Enter the Valid Mail!")
-        }else {
-            upload(file, Username ,ApproversList, RequestName).then(clear_field)
-        }   
-    }
-    
-    const clear_field =()=>{
-        let inputs = document.getElementsByTagName("input");
-        for (let index = 0; index < inputs.length; index++) {
-            inputs[index].value = "";
-            
-        }
-    }
-
-
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  };
 
   return (
-    <div className='main' onLoad={handleSubmit}>
-        <div className='Background'>
-            <div className='Header'>
-                <img  src={logo} alt="University Logo"  className='Logo'/>
-                <div className='title'>Welcome to Student Document Approval System </div> 
-            </div>
-            <div className='Main-Background'>
-                <div className="Content-Background">
-                    <div className="welcome-with-Logout-button">
-                        <div className="Welcome-Name"> Welcome {Student_Name()}</div>
-                        <button className="logout-button buttons-hover" onClick={Logout}>Logout</button>
-                        <button className='Home-Button buttons-hover' onClick={Back}> Home</button>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <h1 className='Heading'>{RequestName} </h1>
-                <div className='Form-Label'>
-                    <label htmlFor="Submit-File" className='File-Label'>Upload Document :</label>
-                    <input type="file" id='File-Input'  onChange={handleChange}/> 
-                </div>
-
-                <button className='Document-Submit-Button buttons-hover' onClick={handleUpload}> Submit</button> 
-                
-                <div id="Approvers-Name">
-                        
-                </div>
-            </div>
-
-            <div className='Footer'>© Copyright {year()} University of Jaffna.</div>
+    <div className="main">
+      {isLoading && <Loading />}
+      <div className="Background">
+        <div className="Header">
+          <img src={logo} alt="University Logo" className="Logo" />
+          <div className="title">
+            Welcome to Student Document Approval System{" "}
+          </div>
         </div>
-        
-    </div>
-  )
-}
 
-export default SubmitRequest
+        <div className="Main-Background">
+          <div className="Content-Background">
+            <div className="welcome-with-Logout-button">
+              <button className="btn btn-success" onClick={Back}>
+                Home
+              </button>
+              <div className="Welcome-Name"> Welcome {Student_Name()}</div>
+
+              <button className="btn btn-danger" onClick={Logout}>
+                Logout
+              </button>
+            </div>
+            <i className="border border-light border-3 opacity-75 mb-3" />
+            <h1 className="Heading">{RequestName} </h1>
+
+            <div className="input-group mb-3">
+              <input
+                type="file"
+                className="form-control"
+                id="inputGroupFile"
+                onClick={handleChange}
+              />
+              <label className="input-group-text" htmlFor="inputGroupFile">
+                Upload
+              </label>
+            </div>
+
+            <div id="Approvers-Name">
+              {ApproverNames.map((Approver, index) => (
+                <div key={index}>
+                  <div className="input-group flex-nowrap my-2">
+                    <span
+                      className="input-group-text flex-wrap col-4"
+                      id="addon-wrapping"
+                    >
+                      {Approver}
+                    </span>
+                    <input
+                      type="email"
+                      className="form-control col-3"
+                      required
+                      placeholder="Email Address"
+                      aria-label="Username"
+                      aria-describedby="addon-wrapping"
+                    />
+                  </div>
+                </div>
+              ))}
+
+              <button
+                className="btn btn-primary buttons-hover px-4"
+                onClick={handleUpload}
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="Footer">© Copyright {year()} University of Jaffna.</div>
+      </div>
+    </div>
+  );
+};
+
+export default SubmitRequest;

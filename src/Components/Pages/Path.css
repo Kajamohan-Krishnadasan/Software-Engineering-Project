@@ -1,87 +1,76 @@
-.AddPathTitle{
-    position: relative;
-    top: 110px;
-    margin-top: 15px;
-    text-align: center;
-    width: 100%;
-    
-    font-size: 40px;
-    color: rgb(8, 73, 73);
+.AddPathTitle {
+  /* position: relative; */
+  /* top: 110px; */
+  /* margin-top: 15px; */
+  text-align: center;
+  /* width: 100%; */
 
+  font-size: 40px;
+  color: rgb(8, 73, 73);
 }
 
+.Add-Button {
+  /* position: absolute; */
+  /* top: 180px; */
+  /* left: 400px; */
+  font-size: 1.5rem;
+  font-weight: 500;
+  background-color: #90caf9;
+  /* height: 60px; */
+  /* width: 150px; */
+  border-radius: 22px;
+}
 
-.Add-Button{
-    position: absolute;
+.Remove-Button {
+  /* position: absolute; */
+  /* top: 180px; */
+  /* left:570px; */
+  font-size: 1.5rem;
+  font-weight: 500;
+  background-color: #90caf9;
+  /* height: 60px; */
+  /* width: 140px; */
+  border-radius: 22px;
+}
+
+.Path-Submit-Button {
+  /* position: absolute; */
+  /* top: 180px; */
+  /* left: 730px; */
+  font-size: 1.5rem;
+  font-weight: 500;
+  background-color: #90caf9;
+  /* height: 60px; */
+  /* width: 150px; */
+  border-radius: 22px;
+}
+
+#Path-Area {
+  padding: 10px;
+  font-size: 1.5rem;
+
+  line-break: anywhere;
+  /* line-height: 60px; */
+  /* background-color: rgb(211, 205, 217); */
+  display: flex;
+  flex-direction: column;
+}
+
+#Select-Persons {
+  /* position: absolute;
     top: 180px;
-    left: 400px;
-    font-size: 35px;
-    font-weight: 500;
-    background-color: #90caf9;
-    height: 60px;
-    width: 150px;
-    border-radius: 22px;
+    left: 100px; */
+  /* padding: 10px; */
+  width: 80%;
+  font-size: 1rem;
 }
 
-.Remove-Button{
-    position: absolute;
-    top: 180px;
-    left:570px;
-    font-size: 35px;
-    font-weight: 500;
-    background-color: #90caf9;
-    height: 60px;
-    width: 140px;
-    border-radius: 22px;
-}
-
-.Path-Submit-Button{
-    position: absolute;
-    top: 180px;
-    left: 730px;
-    font-size: 35px;
-    font-weight: 500;
-    background-color: #90caf9;
-    height: 60px;
-    width: 150px;
-    border-radius: 22px;
-}
-
-
-.buttons-hover:hover{
-    box-shadow: 4px 4px 1px rgba(17, 27, 83, 0.522);
-}
-#Path-Area{
-    position: absolute;
-    top: 220px;
-    left: 100px;
-    padding: 10px;
-    font-size: 35px;
-    line-break: anywhere;
-    line-height: 60px;
-    /* background-color: rgb(211, 205, 217); */
-    display: flex;
-    flex-direction: column;
-    
-}
-
-#Select-Persons{
-    position: absolute;
-    top: 180px;
-    left: 100px;
-    padding: 10px;
-    font-size: 25px;
-    height: 60px;
-    display: flexbox;
-}
-
-Box{
-    /* position: absolute;
+.Box {
+  /* position: absolute;
     top: 10px; */
-    height: 50px;
-    background-color: #0c3451;
-    margin: 5px;
-    height: 80px;
-    text-align: center; 
+  /* height: 50px; */
+  background-color: #0c3451;
+  margin: 50px;
+  /* height: 80px; */
+  text-align: center;
 }
-

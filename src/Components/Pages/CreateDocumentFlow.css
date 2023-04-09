@@ -1,23 +1,24 @@
-.Update-Modify-Button{
-    cursor: pointer;
-    position: absolute;
-    width: 260px;
-    height: 40px;
-    left: 565px;
-    font-size: 25px;
-    background: #FFE296;
-    /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); */
-    border-radius: 10px;
+.Request-Background {
+  display: flex;
+  padding: 1.2rem;
+  justify-content: space-between;
+  margin: 0.5rem;
+  background: rgba(98, 189, 255, 0.5);
+  border-radius: 13px;
 }
 
-.Set-Button{
-    cursor: pointer;
-    position: absolute;
-    width: 204px;
-    height: 40px;
-    right: 35px;
-    font-size: 25px;
-    background: #BCFFBB;
-    /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); */
-    border-radius: 10px;
+.Request-Background .text {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+
+  flex-shrink: 1;
+  flex-grow: 2;
+  flex-basis: 10px;
+}
+
+.Request-Background .d-flex {
+  flex-shrink: 1;
+  flex-grow: 2;
+  flex-basis: 10px;
 }

@@ -1,0 +1,23 @@
+#Popup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #Popup .visible-area {
+    background-color: aliceblue;
+    /* height: ; */
+    /* width: 100%; */
+    box-shadow: 0px 0px 20px rgb(0, 0, 0);
+    border-radius: 10px;
+    padding: 1rem;
+  }
+  

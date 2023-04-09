@@ -1,111 +1,43 @@
-.Request-Background{
-    /* Request Background */
-
-    position: absolute;
-    width: 1097px;
-    height: 58px;
-    left: 173px;
-
-    background: rgba(98, 189, 255, 0.5);
-    border-radius: 13px;
+.Request-Background {
+  display: flex;
+  padding: 1.2rem;
+  justify-content: space-between;
+  margin: 0.5rem;
+  background: rgba(98, 189, 255, 0.5);
+  border-radius: 13px;
 }
 
-.a{
-    top: 127px;
+.Check-Requirements {
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0.5rem 0.7rem;
+  background: #ffe296;
+  /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); */
+  border-radius: 10px;
 }
 
-.b{
-    top: 201px;
+.Request {
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0.5rem 0.7rem;
+  background: #bcffbb;
+  /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); */
+  border-radius: 10px;
 }
 
-.c{
-    top: 275px;
+.Request-Background .text {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+
+  flex-shrink: 1;
+  flex-grow: 2;
+  flex-basis: 10px;
 }
 
-.d{
-    top: 349px;
-}
-
-.e{
-    top: 423px;
-}
-
-.f{
-    top: 497px;
-}
-
-.g{
-    top: 571px;
-}
-
-.Check-Requirements{
-    cursor: pointer;
-    position: absolute;
-    width: 260px;
-    height: 40px;
-    left: 565px;
-    font-size: 25px;
-    background: #FFE296;
-    /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); */
-    border-radius: 10px;
-}
-
-.Request{
-    cursor: pointer;
-    position: absolute;
-    width: 204px;
-    height: 40px;
-    right: 35px;
-    font-size: 25px;
-    background: #BCFFBB;
-    /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25); */
-    border-radius: 10px;
-}
-
-.A{
-    top: 9px;
-}
-
-
-.text{
-    position: absolute;
-    width: 534px;
-    height: 58px;
-    left: 23px;
-    display: flex;
-    align-items: center;
-    font-size: 25px;
-}
-
-#Popup{
-    position: relative;
-    visibility: hidden;
-    top: 125px;
-    left: 400px;
-    background-color: aliceblue;
-    height: 500px;
-    width: 800px;
-    border-radius: 20px;
-    
-    box-shadow:0px 0px 55px 20px rgb(140, 64, 217);
-}
-#Popup h1{
-    position: relative;
-    text-align: center;
-    color: #0b4a0a;
-    top: 25px;
-}
-.Popup-Close{
-    position: absolute;
-    top: 350px;
-    left: 300px;
-    background-color: aliceblue;
-    height: 100px;
-    width: 200px;
-    font-size: 50px;
-    font-weight: 500;
-    border-radius: 20px;
-    
-    
+.Request-Background .d-flex {
+  flex-shrink: 1;
+  flex-grow: 2;
+  flex-basis: 10px;
 }
 

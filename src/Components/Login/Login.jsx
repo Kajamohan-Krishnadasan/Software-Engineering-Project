@@ -1,97 +1,163 @@
 import React, { useEffect, useState } from "react";
 import "./Login.css";
-import {log} from "../Firebase/upload"
-import { documentId } from "firebase/firestore";
+import { login } from "../Firebase/upload";
+import Loading from "../Pages/Loading";
+import { useNavigate } from "react-router-dom";
 
+const Login = () => {
+  const navigation = useNavigate();
+  const MainHome = sessionStorage.getItem("MainHome");
 
-const Login = (props) => {
-  let tag = sessionStorage.getItem("type");
+  const tag = sessionStorage.getItem("UserType");
+  // window.onload = function () {
+  //   if (
+  //     sessionStorage.getItem("MainHome") !== null &&
+  //     sessionStorage.getItem("UserType")
+  //   ) {
+  //     navigation(  sessionStorage.getItem("MainHome"));
+  //   } else if (sessionStorage.getItem("UserType") !== null) {
+  //     navigation("/login");
+  //   } else {
+  //     navigation("/");
+  //   }
+  // };
+
+  useEffect(() => {
+    if (MainHome !== null) {
+      window.location.href = MainHome;
+    } else if (tag !== null) {
+      navigation("/login");
+    } else {
+      navigation("/");
+    }
+  }, [navigation, MainHome, tag]);
+
   const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const [user, setUserDetails] = useState({
     email: "",
     password: "",
   });
 
-  sessionStorage.setItem("UserMail",user.email);
-  
   const changeHandler = (e) => {
     const { name, value } = e.target;
+
     setUserDetails({
       ...user,
       [name]: value,
     });
   };
-  
+
+  useEffect(() => {});
   const validateForm = (values) => {
     const error = {};
     const regex = /^[^\s+@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    if(!values.email.includes("eng.jfn.ac.lk")){
+
+    if (!values.email.includes("eng.jfn.ac.lk")) {
       error.email = "Not valid Email ";
     }
+
     if (!values.email) {
       error.email = "Email is required";
     } else if (!regex.test(values.email)) {
       error.email = "Please enter a valid email address";
     }
+
     if (!values.password) {
       error.password = "Password is required";
     }
+
     return error;
   };
 
-  const loginHandler = (e) => {
-    console.log(user.email)
-    console.log(user.password)
-    console.log(tag)
+  const loginHandler = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     setFormErrors(validateForm(user));
-    setIsSubmit(true);
-    log(user.email,tag,user.password);
-   
-  };
-  const[hide, setHide] = useState(true);
- 
-  
-  const hideHandle=()=>{
 
-    if(hide === true){
-      setHide(false)
+    if (user.email.trim().length !== 0 && user.password.trim().length !== 0) {
+      let log = await login(user.email, tag, user.password);
+      sessionStorage.setItem("UserMail", user.email);
+      setIsError(log);
     }
-    window.location.reload()
-  }
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  };
+
+  const hideHandle = () => {
+    sessionStorage.clear();
+    navigation("/");
+  };
 
   return (
-    <div>
-    {hide && <div className='login1'>
-      <button id="Strong" onClick={hideHandle}>X</button>
-      <form>
-        <h1>Login</h1>
-        <input
-        className="form-input"
-          type="email"
-          name="email"
-          id="email"
-          placeholder="Email"
-          onChange={changeHandler}
-          value={user.email}
-        />
-        <p className='error'>{formErrors.email}</p>
-        <input className="form-input"
-          type="password"
-          name="password"
-          id="password"
-          placeholder="Password"
-          onChange={changeHandler}
-          value={user.password}
-        />
-        <p className='error'>{formErrors.password}</p>
-        <button className='button_common' onClick={loginHandler}>
-          Login
-        </button>
-      </form>
-      
-    </div>}</div>
+    <div id="blur-background">
+      {isLoading && <Loading />}
+      <div className="login1">
+        <span id="Strong" onClick={hideHandle}>
+          X
+        </span>
+        {isError && (
+          <div className="alert alert-danger d-flex align-items-center ">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-exclamation-circle-fill mx-2"
+              viewBox="0 0 16 16"
+            >
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+            </svg>
+            <div> Invalid Password or Email!</div>
+          </div>
+        )}
+        <form className="form ">
+          <div className="container text-center">
+            <span className="text-success">Login as {tag} </span>
+          </div>
+
+          <div className="container">
+            <input
+              className="form-input"
+              type="email"
+              name="email"
+              placeholder="Email"
+              onChange={changeHandler}
+              value={user.email}
+              required
+            />
+
+            <div className="error">{formErrors.email}</div>
+          </div>
+
+          <div className="container">
+            <input
+              className="form-input mt-2"
+              type="password"
+              name="password"
+              placeholder="Password"
+              onChange={changeHandler}
+              value={user.password}
+              required
+            />
+            <div className="error">{formErrors.password}</div>
+          </div>
+
+          <div className="container text-center">
+            <button
+              className="btn btn-primary px-4 mt-2"
+              onClick={loginHandler}
+            >
+              Login
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 };
-export  default Login;
+export default Login;

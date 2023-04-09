@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import "../general.css";
 import "./AproversPage.css";
 import logo from "../assets/logo.png";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import navigation from "../Auth/Navigation";
+import Loading from "../Pages/Loading";
 
 const AproversPage = () => {
-  const navigation = useNavigate();
+  // const navigation = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const year = () => {
     let VarDate = new Date().getFullYear();
@@ -42,6 +44,7 @@ const AproversPage = () => {
 
   return (
     <div className="main">
+      {isLoading && <Loading />}
       <div className="Background">
         <div className="Header">
           <img src={logo} alt="University Logo" className="Logo" />
@@ -49,7 +52,7 @@ const AproversPage = () => {
             Welcome to Student Document Approval System{" "}
           </div>
         </div>
-        
+
         <div className="Main-Background">
           <div className="Content-Background">
             <div className="welcome-with-Logout-button">

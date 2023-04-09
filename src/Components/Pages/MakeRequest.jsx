@@ -3,11 +3,12 @@ import "../general.css";
 import "./MakeRequest.css";
 import logo from "../assets/logo.png";
 import Loading from "./Loading";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import navigation from "../Auth/Navigation";
 
 const MakeRequest = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const navigation = useNavigate();
+  // const navigation = useNavigate();
 
   let MainHome = sessionStorage.getItem("MainHome");
 
@@ -22,7 +23,7 @@ const MakeRequest = () => {
     } else {
       sessionStorage.setItem("MainHome", "Student-Home");
     }
-  }, [navigation]);
+  }, []);
 
   const Student_Name = () => {
     return sessionStorage.getItem("Username");

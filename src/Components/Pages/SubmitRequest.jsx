@@ -7,11 +7,12 @@ import { upload } from "../Firebase/upload.js";
 
 import { isValidInput } from "../Auth/CheckFunction";
 import Loading from "./Loading";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import navigation from "../Auth/Navigation";
 
 const SubmitRequest = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const navigation = useNavigate();
+  // const navigation = useNavigate();
   let MainHome = sessionStorage.getItem("MainHome");
   const [file, setFile] = useState(null);
   let ApproversList = [];
@@ -62,7 +63,7 @@ const SubmitRequest = () => {
 
       // console.log(ApproverNames);
     }
-  }, [navigation]);
+  }, []);
 
   const Logout = () => {
     setIsLoading(true);

@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Loading from "../Pages/Loading";
 import "./Popup.css";
 
+import navigation from "../Auth/Navigation";
+
 const Popup = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const navigation = useNavigate();
+  // const navigation = useNavigate();
   const location = useLocation();
 
   const RequestName = location.state.RequestName;

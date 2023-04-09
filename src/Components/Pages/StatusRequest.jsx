@@ -4,11 +4,12 @@ import "./StatusRequest.css";
 import logo from "../assets/logo.png";
 import { readDocuments } from "../Firebase/upload";
 import Loading from "./Loading";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import navigation from "../Auth/Navigation";
 
 const StatusRequest = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const navigation = useNavigate();
+  // const navigation = useNavigate();
 
   let MainHome = sessionStorage.getItem("MainHome");
   let StatusType = sessionStorage.getItem("StatusType");
@@ -35,7 +36,7 @@ const StatusRequest = () => {
     } else {
       sessionStorage.setItem("MainHome", sessionStorage.getItem("MainHome"));
     }
-  }, [navigation]);
+  }, []);
 
   const Logout = () => {
     setIsLoading(true);

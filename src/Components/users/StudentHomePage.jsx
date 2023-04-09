@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import "../general.css";
 import logo from "../assets/logo.png";
 import Loading from "../Pages/Loading";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import navigation from "../Auth/Navigation";
 
 const StudentHomePage = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const navigation = useNavigate();
+  // const navigation = useNavigate();
 
   const year = () => {
     let VarDate = new Date().getFullYear();
@@ -19,7 +20,7 @@ const StudentHomePage = () => {
     } else {
       sessionStorage.setItem("MainHome",sessionStorage.getItem("MainHome"));
     }
-  }, [navigation]);
+  }, []);
 
   const Student_Name = () => {
     return sessionStorage.getItem("Username");

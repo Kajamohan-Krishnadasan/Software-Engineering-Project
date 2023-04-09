@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import "./Login.css";
 import { login } from "../Firebase/upload";
 import Loading from "../Pages/Loading";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import navigation from "../Auth/Navigation";
 
 const Login = () => {
-  const navigation = useNavigate();
+  // const navigation = useNavigate();
   const MainHome = sessionStorage.getItem("MainHome");
 
   const tag = sessionStorage.getItem("UserType");
@@ -30,7 +31,7 @@ const Login = () => {
     } else {
       navigation("/");
     }
-  }, [navigation, MainHome, tag]);
+  }, [MainHome, tag]);
 
   const [formErrors, setFormErrors] = useState({});
   const [isError, setIsError] = useState(false);

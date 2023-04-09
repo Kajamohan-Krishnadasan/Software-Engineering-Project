@@ -3,11 +3,12 @@ import "../general.css";
 import "./CreateDocumentFlow.css";
 import logo from "../assets/logo.png";
 import Loading from "./Loading";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import navigation from "../Auth/Navigation";
 
 const MakeRequest = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const navigation = useNavigate();
+  // const navigation = useNavigate();
   const year = () => {
     let VarDate = new Date().getFullYear();
 
@@ -20,7 +21,7 @@ const MakeRequest = () => {
     } else {
       sessionStorage.setItem("MainHome", sessionStorage.getItem("MainHome"));
     }
-  }, [navigation]);
+  }, []);
 
   const Staff_Name = () => {
     return sessionStorage.getItem("Username");

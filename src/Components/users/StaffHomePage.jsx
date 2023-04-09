@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import "../general.css";
 import logo from "../assets/logo.png";
 import Loading from "../Pages/Loading";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import navigation from "../Auth/Navigation";
 
 const StaffHomePage = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const navigation = useNavigate();
+  // const navigation = useNavigate();
   const year = () => {
     let VarDate = new Date().getFullYear();
     return VarDate;
@@ -22,7 +23,7 @@ const StaffHomePage = () => {
     } else {
       sessionStorage.setItem("MainHome", sessionStorage.getItem("MainHome"));
     }
-  }, [navigation]);
+  }, []);
 
   const Logout = () => {
     setIsLoading(true);

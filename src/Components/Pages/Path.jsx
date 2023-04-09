@@ -4,12 +4,18 @@ import "./Path.css";
 
 import { PathOnSubmit } from "../Firebase/functions";
 import Loading from "./Loading";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import navigation from "../Auth/Navigation";
+
 
 const Path = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const navigation = useNavigate();
+  // const navigation = useNavigate();
   const MainHome = sessionStorage.getItem("MainHome");
+  let pathName = sessionStorage.getItem("PathName");
+  const [i, setI] = useState(0);
+  const [Approvers, setApprovers] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const year = () => {
     let VarDate = new Date().getFullYear();
@@ -22,7 +28,7 @@ const Path = () => {
     } else {
       sessionStorage.setItem("MainHome", sessionStorage.getItem("MainHome"));
     }
-  }, [navigation]);
+  }, []);
 
   const Staff_Name = () => {
     return sessionStorage.getItem("Username");
@@ -49,8 +55,6 @@ const Path = () => {
     }, 2000);
   };
 
-  let pathName = sessionStorage.getItem("PathName");
-
   const hide_reset_button = () => {
     setIsLoading(true);
 
@@ -59,25 +63,19 @@ const Path = () => {
     }, 2000);
   };
 
-  const [i, setI] = useState(1);
-  const [Approvers, setApprovers] = useState([]);
-  let noOfApprover = 0;
-
   const add_Persons = () => {
-    setIsLoading(true);
+    // setIsLoading(true);
 
-    let PathArea = document.getElementById("Path-Area");
     let SelectPersons = document.getElementById("Select-Persons");
-    console.log(SelectPersons.value);
 
     if (SelectPersons.value !== "Default" && i < 7) {
-      // Approvers.push(SelectPersons.value);
       setApprovers([...Approvers, SelectPersons.value]);
-      PathArea.innerHTML += `<div> ${i} <sup> th </sup>Approver  : ${SelectPersons.value} </div>`;
-      noOfApprover++;
+
       setI(i + 1);
+      setErrorMessage("");
+      console.log(SelectPersons.value, i);
     } else {
-      alert("Please Select the Staff");
+      setErrorMessage("Please Select the Staff");
     }
 
     setTimeout(() => {
@@ -85,17 +83,14 @@ const Path = () => {
     }, 2000);
   };
 
-  const remove_Persons = () => {
+  const remove_Persons = (index) => {
     setIsLoading(true);
 
-    if (i > 0) {
-      // Approvers.pop();
-      setApprovers(Approvers.slice(0, -1));
-      let PathArea = document.getElementById("Path-Area");
-      PathArea.removeChild(PathArea.lastChild);
-      noOfApprover--;
-      setI(i - 1);
-    }
+    setApprovers(
+      Approvers.filter((Approver) => {
+        return Approver !== Approvers[index];
+      })
+    );
 
     setTimeout(() => {
       setIsLoading(false);
@@ -104,7 +99,11 @@ const Path = () => {
 
   async function handleSubmit() {
     setIsLoading(true);
-    await PathOnSubmit(pathName, noOfApprover, Approvers);
+
+    if (await PathOnSubmit(pathName, i, Approvers)) {
+      alert("Path Added Successfully");
+      navigation(MainHome);
+    }
 
     setTimeout(() => {
       setIsLoading(false);
@@ -136,34 +135,59 @@ const Path = () => {
             </div>
 
             <div className="AddPathTitle">{pathName} </div>
+            <div className="d-flex mb-3 gap-3">
+              <select
+                className="form-select form-select order-0 p-3 "
+                id="Select-Persons"
+              >
+                <option value="Default">Select the Staff</option>
+                <option value="Asst.Registrar"> Asst.Registrar</option>
+                <option value="Dean"> Dean</option>
+                <option value="Head of Departments">Head of Departments</option>
+                <option value="Advisor">Advisor</option>
+                <option value="Course Coordinator">Course Coordinator</option>
+              </select>
 
-            <select id="Select-Persons" className="form-select mb-3">
-              <option value="Default">Select the Staff</option>
-              <option value="Asst.Registrar"> Asst.Registrar</option>
-              <option value="Dean"> Dean</option>
-              <option value="Head of Departments">Head of Departments</option>
-              <option value="Advisor">Advisor</option>
-              <option value="Course Coordinator">Course Coordinator</option>
-            </select>
-
-            <div className="buttons-set d-flex gap-5 justify-content-center">
               <button
-                className="btn btn-primary buttons-hover"
+                className="btn btn-outline-success buttons-hover p-3"
                 onClick={add_Persons}
               >
                 Add +
               </button>
 
-              <button className="btn btn-danger" onClick={remove_Persons}>
-                Remove
-              </button>
-
-              <button className="btn btn-success" onClick={handleSubmit}>
+              <button className="btn btn-primary" onClick={handleSubmit}>
                 Submit
               </button>
             </div>
 
-            <div id="Path-Area"></div>
+            {errorMessage && <div className="error">{errorMessage}</div>}
+            <div id="Path-Area">
+              {Approvers.length > 0 &&
+                Approvers.map((item, index) => {
+                  return (
+                    <div className="input-group mb-3" key={index}>
+                      <span className="input-group-text">
+                        {index + 1} <sup> th </sup>Approver
+                      </span>
+
+                      <input
+                        className="form-control"
+                        type="text"
+                        value={item}
+                        aria-label="Disabled input example"
+                        disabled
+                        readOnly
+                      />
+                      <button
+                        className="btn btn-danger"
+                        onClick={remove_Persons(index)}
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  );
+                })}
+            </div>
           </div>
         </div>
 

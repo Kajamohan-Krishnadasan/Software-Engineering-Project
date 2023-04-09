@@ -4,18 +4,6 @@ import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 import { getFirestore } from "firebase/firestore";
 
-// const firebaseConfigNife = {
-//   apiKey: "AIzaSyD2jbQ-IpxgK97bHhcnKXiP3sVkTjErAAg",
-//   authDomain: "studentdocumentapprovalsystem.firebaseapp.com",
-//   databaseURL:
-//     "https://studentdocumentapprovalsystem-default-rtdb.firebaseio.com",
-//   projectId: "studentdocumentapprovalsystem",
-//   storageBucket: "studentdocumentapprovalsystem.appspot.com",
-//   messagingSenderId: "654356979884",
-//   appId: "1:654356979884:web:276c5b7b87f40c1d93ff09",
-//   measurementId: "G-WGMGT7RD26",
-// };
-
 // Your web app's Firebase configuration
 // Kajamohan
 // gs://student-document-approval-uoj.appspot.com

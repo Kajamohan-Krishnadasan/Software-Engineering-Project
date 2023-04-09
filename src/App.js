@@ -20,8 +20,6 @@ const App = () => {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          {/* <Route exact path="" element={<StaffHomePage />} /> */}
-
           {/* Login Page */}
           <Route exact path="/" element={<LoginPage />} />
           <Route exact path="/login" element={<Login />} />
@@ -63,6 +61,8 @@ const App = () => {
           {/* Ongoing Request / Approved Request / Rejected Request */}
 
           <Route path="/StatusRequest" element={<StatusRequest />} />
+
+          <Route exact path="*" element={<LoginPage />} />
         </Routes>
       </BrowserRouter>
     </div>

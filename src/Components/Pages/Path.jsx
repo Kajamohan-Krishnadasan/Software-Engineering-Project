@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from "react";
 import logo from "../assets/logo.png";
 import "./Path.css";
+import "../general.css";
 
 import { PathOnSubmit } from "../Firebase/functions";
 import Loading from "./Loading";
-// import { useNavigate } from "react-router-dom";
 import navigation from "../Auth/Navigation";
-
 
 const Path = () => {
   const [isLoading, setIsLoading] = useState(false);
-  // const navigation = useNavigate();
   const MainHome = sessionStorage.getItem("MainHome");
   let pathName = sessionStorage.getItem("PathName");
   const [i, setI] = useState(0);
   const [Approvers, setApprovers] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const year = () => {
     let VarDate = new Date().getFullYear();
@@ -64,33 +63,23 @@ const Path = () => {
   };
 
   const add_Persons = () => {
-    // setIsLoading(true);
-
     let SelectPersons = document.getElementById("Select-Persons");
 
     if (SelectPersons.value !== "Default" && i < 7) {
       setApprovers([...Approvers, SelectPersons.value]);
 
+      // console.log(Approvers, i);
       setI(i + 1);
       setErrorMessage("");
-      console.log(SelectPersons.value, i);
     } else {
       setErrorMessage("Please Select the Staff");
     }
-
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
   };
 
   const remove_Persons = (index) => {
     setIsLoading(true);
-
-    setApprovers(
-      Approvers.filter((Approver) => {
-        return Approver !== Approvers[index];
-      })
-    );
+    // console.log(index);
+    setApprovers(Approvers.filter((_item, i) => i !== index));
 
     setTimeout(() => {
       setIsLoading(false);
@@ -102,6 +91,7 @@ const Path = () => {
 
     if (await PathOnSubmit(pathName, i, Approvers)) {
       alert("Path Added Successfully");
+      setSuccessMessage(pathName + " Path Added Successfully");
       navigation(MainHome);
     }
 
@@ -135,9 +125,9 @@ const Path = () => {
             </div>
 
             <div className="AddPathTitle">{pathName} </div>
-            <div className="d-flex mb-3 gap-3">
+            <div className="d-flex mb-3 gap-3 px-3">
               <select
-                className="form-select form-select order-0 p-3 "
+                className="form-select form-select p-3 "
                 id="Select-Persons"
               >
                 <option value="Default">Select the Staff</option>
@@ -161,6 +151,7 @@ const Path = () => {
             </div>
 
             {errorMessage && <div className="error">{errorMessage}</div>}
+            {successMessage && <div className="success">{successMessage}</div>}
             <div id="Path-Area">
               {Approvers.length > 0 &&
                 Approvers.map((item, index) => {
@@ -180,7 +171,7 @@ const Path = () => {
                       />
                       <button
                         className="btn btn-danger"
-                        onClick={remove_Persons(index)}
+                        onClick={() => remove_Persons(index)}
                       >
                         Remove
                       </button>

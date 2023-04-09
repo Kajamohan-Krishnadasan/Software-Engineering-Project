@@ -44,7 +44,7 @@ const MakeRequest = () => {
   const Back = () => {
     setIsLoading(true);
     // window.location.href = "/" + MainHome;
-    navigation(  MainHome);
+    navigation(MainHome);
 
     setTimeout(() => {
       setIsLoading(false);
@@ -52,15 +52,9 @@ const MakeRequest = () => {
   };
 
   const Submit_Request = (ReqName) => {
-    setIsLoading(true);
-
-    navigation("/Student-Home/MakeRequest/SubmitRequest");
     var RequestName = ReqName;
     sessionStorage.setItem("RequestName", RequestName);
-
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
+    navigation("/Student-Home/MakeRequest/SubmitRequest");
   };
 
   const PopUp_Display = (e) => {

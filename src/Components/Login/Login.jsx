@@ -8,30 +8,17 @@ import navigation from "../Auth/Navigation";
 const Login = () => {
   // const navigation = useNavigate();
   const MainHome = sessionStorage.getItem("MainHome");
-
   const tag = sessionStorage.getItem("UserType");
-  // window.onload = function () {
-  //   if (
-  //     sessionStorage.getItem("MainHome") !== null &&
-  //     sessionStorage.getItem("UserType")
-  //   ) {
-  //     navigation(  sessionStorage.getItem("MainHome"));
-  //   } else if (sessionStorage.getItem("UserType") !== null) {
-  //     navigation("/login");
-  //   } else {
-  //     navigation("/");
-  //   }
-  // };
 
-  useEffect(() => {
-    if (MainHome !== null) {
+  window.onload = function () {
+    if (MainHome !== null && tag !== null) {
       window.location.href = MainHome;
-    } else if (tag !== null) {
+    } else if (tag !== null && MainHome === null) {
       navigation("/login");
     } else {
       navigation("/");
     }
-  }, [MainHome, tag]);
+  };
 
   const [formErrors, setFormErrors] = useState({});
   const [isError, setIsError] = useState(false);
@@ -43,6 +30,7 @@ const Login = () => {
   });
 
   const changeHandler = (e) => {
+    setIsError(false);
     const { name, value } = e.target;
 
     setUserDetails({

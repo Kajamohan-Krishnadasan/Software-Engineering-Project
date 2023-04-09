@@ -17,6 +17,7 @@ const SubmitRequest = () => {
   const [file, setFile] = useState(null);
   let ApproversList = [];
   const [ApproverNames, setApproverNames] = useState([]);
+  const [error, setError] = useState("");
 
   let RequestName = sessionStorage.getItem("RequestName");
   let Username = sessionStorage.getItem("Username");
@@ -87,11 +88,12 @@ const SubmitRequest = () => {
   };
 
   const handleChange = (event) => {
-    setIsLoading(true);
-    setFile(event.target.files[0]);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
+    // setIsLoading(true);
+    hideAlert();
+    setFile(event.target.files);
+    // setTimeout(() => {
+    //   setIsLoading(false);
+    // }, 2000);
   };
 
   const handleUpload = async () => {
@@ -104,14 +106,14 @@ const SubmitRequest = () => {
       ApproversList.push(Approvers_Mail[index].value);
     }
 
-    if (!file) {
-      alert("Please choose a file first!");
-    } else if (!isValidInput(ApproversList)) {
-      alert("Please Enter the Valid Mail!");
+    if (!isValidInput(ApproversList)) {
+      setError("Please Enter the Valid Mail!");
+    } else if (!file) {
+      setError("Please choose a file first!");
     } else {
-      await upload(file, Username, ApproversList, RequestName).then(
-        clear_field
-      );
+      await upload(file, Username, ApproversList, RequestName).then(() => {
+        clear_field();
+      });
     }
 
     setTimeout(() => {
@@ -130,6 +132,10 @@ const SubmitRequest = () => {
     setTimeout(() => {
       setIsLoading(false);
     }, 2000);
+  };
+
+  const hideAlert = () => {
+    setError("");
   };
 
   return (
@@ -163,7 +169,8 @@ const SubmitRequest = () => {
                 type="file"
                 className="form-control"
                 id="inputGroupFile"
-                onClick={handleChange}
+                onChange={handleChange}
+                multiple
               />
               <label className="input-group-text" htmlFor="inputGroupFile">
                 Upload
@@ -171,29 +178,32 @@ const SubmitRequest = () => {
             </div>
 
             <div id="Approvers-Name">
-              {ApproverNames.map((Approver, index) => (
-                <div key={index}>
-                  <div className="input-group flex-nowrap my-2">
-                    <span
-                      className="input-group-text flex-wrap col-4"
-                      id="addon-wrapping"
-                    >
-                      {Approver}
-                    </span>
-                    <input
-                      type="email"
-                      className="form-control col-3"
-                      required
-                      placeholder="Email Address"
-                      aria-label="Username"
-                      aria-describedby="addon-wrapping"
-                    />
+              {ApproverNames &&
+                ApproverNames.map((Approver, index) => (
+                  <div key={index}>
+                    <div className="input-group flex-nowrap my-2">
+                      <span
+                        className="input-group-text text-light  bg-success flex-wrap col-4"
+                        id="addon-wrapping"
+                      >
+                        {Approver}
+                      </span>
+                      <input
+                        type="email"
+                        className="form-control col-3"
+                        required
+                        placeholder="Email Address"
+                        aria-label="Username"
+                        aria-describedby="addon-wrapping"
+                        onChange={hideAlert}
+                      />
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
 
+              {error && <div className="error alert alert-danger">{error}</div>}
               <button
-                className="btn btn-primary buttons-hover px-4"
+                className="btn btn-primary buttons-hover px-4 mt-2"
                 onClick={handleUpload}
               >
                 Submit

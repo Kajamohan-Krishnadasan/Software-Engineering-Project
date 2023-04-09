@@ -90,40 +90,42 @@ const MakeRequest = () => {
 
         <div className="Main-Background">
           <div className="Content-Background">
-          <div className="welcome-with-Logout-button">
-              <button className="btn btn-success" onClick={Home}>
+            <div className="welcome-with-Logout-button container">
+              <button className="btn btn-success col me-2" onClick={Home}>
                 Home
               </button>
-              <div className="Welcome-Name"> Welcome {Staff_Name()}</div>
+              <div className="fs-1 text-center text-secondary col-6"> Welcome {Staff_Name()}</div>
 
-              <button className="btn btn-danger" onClick={Logout}>
+              <button className="btn btn-danger col" onClick={Logout}>
                 Logout
               </button>
             </div>
 
-            {requestNames.map((item, index) => {
-              return (
-                <div className="Request-Background" key={index}>
-                  <div className="text"> {item}</div>
+            <div className="container">
+              {requestNames.map((item, index) => {
+                return (
+                  <div className="Request-Background row" key={index}>
+                    <div className="text col"> {item}</div>
 
-                  <div className="d-flex gap-4 pe-4">
-                    <button
-                      className="btn btn-warning px-4"
-                      onClick={updatePath(item)}
-                    >
-                      Update/Modify
-                    </button>
+                    <div className="d-flex gap-4 pe-4 col">
+                      <button
+                        className="btn btn-warning px-4"
+                        onClick={updatePath(item)}
+                      >
+                        Update/Modify
+                      </button>
 
-                    <button
-                      className="btn btn-primary px-4"
-                      onClick={() => setPath(item)}
-                    >
-                      Set
-                    </button>
+                      <button
+                        className="btn btn-primary px-4"
+                        onClick={() => setPath(item)}
+                      >
+                        Set
+                      </button>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
 

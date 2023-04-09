@@ -79,6 +79,7 @@ async function readDocuments(requester, status) {
 async function readDocumentsStaff(staff, status) {
   const q = query(collection(db, "Documents"));
   const querySnapshot = await getDocs(q);
+
   let temp = [];
   querySnapshot.forEach((doc) => {
     for (let i = 0; i < doc.data().Approvers.length; i++) {
@@ -194,6 +195,7 @@ async function login(email, role, password) {
   }
 }
 
+// get user name from firebase using email
 async function getName(email) {
   let name = "";
   const q = query(collection(db, "Users"), where("UserMail", "==", email));
@@ -201,29 +203,39 @@ async function getName(email) {
   querySnapshot.forEach((doc) => {
     name = doc.data().Username;
   });
-  // console.log("upload/ name : ", name);
   return name;
 }
-// async function readApprovedDocuments(requester){
-//   const q = query(collection(db, "Documents"),where("Requester_Mail","==",requester),where("File_Status","==","Approved"));
-//   const querySnapshot = await getDocs(q);
 
-//   let temp = [];
-//   querySnapshot.forEach((doc)=>{
-//     temp.push(doc.data());
-//   })
-//   return temp;
-// }
+// read all the documents which are approved
+async function readApprovedDocuments(requester) {
+  const q = query(
+    collection(db, "Documents"),
+    where("Requester_Mail", "==", requester),
+    where("File_Status", "==", "Approved")
+  );
+  const querySnapshot = await getDocs(q);
 
-// async function readRejectDocuments(requester){
-//   const q = query(collection(db,"Documents"),where("Requester_Mail","==",requester),where("File_Status","==","Rejected"));
-//   const querySnapshot = await getDocs(q);
-//   let temp=[];
-//   querySnapshot.forEach((doc)=>{
-//     temp.push(doc.data());
-//   })
-//   return temp;
-// }
+  let temp = [];
+  querySnapshot.forEach((doc) => {
+    temp.push(doc.data());
+  });
+  return temp;
+}
+
+// read all the documents which are rejected
+async function readRejectDocuments(requester) {
+  const q = query(
+    collection(db, "Documents"),
+    where("Requester_Mail", "==", requester),
+    where("File_Status", "==", "Rejected")
+  );
+  const querySnapshot = await getDocs(q);
+  let temp = [];
+  querySnapshot.forEach((doc) => {
+    temp.push(doc.data());
+  });
+  return temp;
+}
 
 export {
   upload,
@@ -232,4 +244,6 @@ export {
   submitStaff,
   login,
   getName,
+  readRejectDocuments,
+  readApprovedDocuments,
 };

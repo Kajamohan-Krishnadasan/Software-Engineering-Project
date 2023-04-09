@@ -10,7 +10,12 @@ import navigation from "../Auth/Navigation";
 
 const ApproversStatusPage = () => {
   const [isLoading, setIsLoading] = useState(false);
-  // const navigation = useNavigate();
+  // var fileLists = [];
+  const [fileLists, setFileLists] = useState([]);
+
+  window.onload = () => {
+    handleSubmit();
+  };
 
   let StatusType = sessionStorage.getItem("StatusType");
   let MainHome = sessionStorage.getItem("MainHome");
@@ -53,7 +58,7 @@ const ApproversStatusPage = () => {
 
   const Home = () => {
     setIsLoading(true);
-    navigation(  MainHome);
+    navigation(MainHome);
 
     setTimeout(() => {
       setIsLoading(false);
@@ -81,63 +86,14 @@ const ApproversStatusPage = () => {
   const handleSubmit = async () => {
     setIsLoading(true);
 
-    let Display = document.getElementById("Staff-Display-Area");
-
     try {
-      let fileLists = await readDocumentsStaff(UserMail, status);
-
-      if (fileLists.length > 0) {
-        for (let i = 0; i < fileLists.length; i++) {
-          id.push(fileLists[i].File_URL);
-          Display.innerHTML += `<br/><p> Requester : ${fileLists[i].Requester_Mail}</p>`;
-          Display.innerHTML += `<p> Request Type : ${fileLists[i].Request_Type}</p>`;
-          Display.innerHTML += `Document : <a className='Status-liink'  href = '${fileLists[i].File_URL}'> Click Here... </a>`;
-          Display.innerHTML += `<br/>
-            <table class="Status-Table1"> 
-                <tr>
-                    <th> No </th>
-                    <th> Approver Email </th>
-                    <th> Status </th>
-                    <th> Comments</th>
-                </tr> 
-            </table>`;
-
-          for (let j = 0; j < fileLists[i].No_of_Approvers; j++) {
-            Display.innerHTML += `
-                <table class="Status-Table2">
-                    <tr> 
-                        <th> ${j + 1} </th> 
-                        <th> ${fileLists[i].Approvers[j]} </th>
-                        <th> ${fileLists[i].Status[j]} </th>
-                        <th> ${fileLists[i].Comment[j]} </th>
-                    </tr> 
-                </table>`;
-          }
-          Display.innerHTML += `
-            <div class="Input-Area">
-                <textarea class="Comment" name="Remarks" rows="4" cols="50" maxlength="300" placeholder="Enter Your Remarks"></textarea>
-                <select name="SetStatus" class="SetStatus">
-                    <option value="Default" >Approve / Reject</option>
-                    <option value="Approved">Approve </option>
-                    <option value="Rejected">Reject</option>
-                </select> 
-                <button class="Status-buttons-hover Status-Submit-Button"  >submit</button> 
-            </div`;
-        }
-
-        let butonsTotal = document.getElementsByClassName(
-          "Status-Submit-Button"
-        );
-
-        for (let i = 0; i < butonsTotal.length; i++) {
-          butonsTotal[i].addEventListener("click", () => submit(i));
-        }
-      } else {
-        Display.innerHTML += `<h1 class="Aprover-Display"> No Request Found !!!</h1>`;
-      }
+      setFileLists(
+        await readDocumentsStaff(UserMail, status).then((res) => {
+          return res;
+        })
+      );
     } catch (error) {
       console.log(error);
-      // Display.innerHTML += `<h1 class="Aprover-Display"> No Request Found !!!</h1>`
     }
 
     setTimeout(() => {
@@ -146,7 +102,7 @@ const ApproversStatusPage = () => {
   };
 
   return (
-    <div className="main" onLoad={handleSubmit}>
+    <div className="main">
       {isLoading && <Loading />}
       <div className="Background">
         <div className="Header">
@@ -170,7 +126,150 @@ const ApproversStatusPage = () => {
             </div>
             <h1 className="Status-Heading">{StatusType} </h1>
 
-            <div id="Staff-Display-Area"></div>
+            <div id="Staff-Display-Area">
+              {fileLists.length === 0 && (
+                <h1 className="Aprover-Display"> No Request Found !!!</h1>
+              )}
+
+              <div className="accordion" id="accordionExample">
+                {fileLists.length > 0 &&
+                  fileLists.map((fileList, index) => {
+                    id.push(fileList.File_URL);
+                    return (
+                      <div key={index} className="accordion-item mb-1">
+                        <h2 className="accordion-header">
+                          <button
+                            className="accordion-button"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target={"#collapse" + index}
+                            aria-expanded="true"
+                            aria-controls="collapseOne"
+                          >
+                            <b>
+                              {fileList.Requester_Mail + " "}
+                              Requesting for
+                              {" " + fileList.Request_Type}
+                            </b>
+                          </button>
+                        </h2>
+
+                        <div
+                          id={"collapse" + index}
+                          className="accordion-collapse collapse "
+                          data-bs-parent="#accordionExample"
+                        >
+                          <div className="accordion-body">
+                            <div className="input-group flex-nowrap row mb-2 ">
+                              <span
+                                class="input-group-text border-success bg-success text-white col-3"
+                                id="addon-wrapping"
+                              >
+                                Student Name
+                              </span>
+
+                              <span className="form-control border text-success border-success">
+                                {fileList.Requester_Mail}
+                              </span>
+                            </div>
+
+                            <div className="input-group  flex-nowrap row mb-2">
+                              <span
+                                class="input-group-text border border-secondary bg-secondary text-white col-3"
+                                id="addon-wrapping"
+                              >
+                                Request Type
+                              </span>
+
+                              <span className="form-control border border-secondary text-secondary ">
+                                {fileList.Request_Type}
+                              </span>
+                            </div>
+
+                            <div className="input-group flex-nowrap row">
+                              <span
+                                class="input-group-text border border-info bg-info text-white col-3"
+                                id="addon-wrapping"
+                              >
+                                Document
+                              </span>
+
+                              <a
+                                href={id[index]}
+                                className="form-control border border-info link-info text-decoration-none"
+                              >
+                                Click Here...
+                              </a>
+                            </div>
+                            <table className="table table-hover">
+                              <thead>
+                                <tr>
+                                  <th> No </th>
+                                  <th> Approver Email </th>
+                                  <th> Status </th>
+                                  <th> Comments</th>
+                                </tr>
+                              </thead>
+                              <tbody className="table-group-divider">
+                                {fileList.Approvers.map((approver, j) => {
+                                  return (
+                                    <tr key={j}>
+                                      <td> {j + 1} </td>
+                                      <td> {approver} </td>
+                                      <td> {fileList.Status[j]} </td>
+                                      <td> {fileList.Comment} </td>
+                                    </tr>
+                                  );
+                                })}
+                              </tbody>
+                            </table>
+                            <div>
+                              <div className="mb-3 row">
+                                <label
+                                  htmlFor="exampleFormControlTextarea1"
+                                  className="form-label"
+                                >
+                                  Comment
+                                </label>
+
+                                <textarea
+                                  className="form-control"
+                                  id="exampleFormControlTextarea1"
+                                  rows="3"
+                                  name="Remarks"
+                                  maxLength="300"
+                                  placeholder="Enter Your Remarks"
+                                ></textarea>
+                              </div>
+
+                              <div className="row d-flex gap-3">
+                                <select
+                                  name="SetStatus"
+                                  className="form-select col"
+                                >
+                                  <option value="Default">
+                                    Approve / Reject
+                                  </option>
+                                  <option value="Approved">Approve </option>
+                                  <option value="Rejected">Reject</option>
+                                </select>
+
+                                <button
+                                  className="col-2 btn btn-primary"
+                                  onClick={submit}
+                                >
+                                  submit
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                          <hr class="border w-100 border-danger border-3 opacity-75" />
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
+            </div>
           </div>
         </div>
 

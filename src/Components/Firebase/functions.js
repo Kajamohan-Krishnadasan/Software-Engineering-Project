@@ -1,5 +1,5 @@
 import { doc, setDoc, getDoc } from "firebase/firestore";
-import { db } from "../../firebase";
+import { db } from "../../Firebase/firebase";
 
 // upload the Path Details
 async function PathOnSubmit(pathName, noOfApprover, Approvers) {

@@ -1,70 +1,150 @@
-# Getting Started with Create React App
+# Software-Engineering-Project - Student Document Approval System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project we are doing Student Documents Approval System using React Js.
 
-## Available Scripts
+## Team Members
 
-In the project directory, you can run:
+- **Kajamohan K.**
+- **Thilakarathna R.M.S.S.**
+- **Naif A.M.M.**
+- **Gobishangar V.**
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- initially you need to install node js and npm in your system.
+- after that you need to open the project in your editor. And open the terminal in the project folder.
+- then you need to run the command `npm install` to install all the dependencies.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- create custom folder called `Firebase` in the `src` folder.
+- Then create a file called `firebase.js` in the `Firebase` folder.
 
-### `npm test`
+and paste the following code in the `firebase.js` file.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```javascript
+// import * as firebase from "firebase/app"
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getStorage } from "firebase/storage";
+import { getFirestore } from "firebase/firestore";
 
-### `npm run build`
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  databaseURL: "YOUR_DATABASE_URL",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_STORAGE_BUCKET",
+  appId: "YOUR_APP_ID",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+};
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const storage = getStorage(app);
+const db = getFirestore(app);
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+// const uid = auth.currentUser?.uid;
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+export { db, auth, app, storage };
+```
 
-### `npm run eject`
+- after that you need to run the command `npm start` to run the project.
+- if any error occurs you can run the command `npm audit fix --force` to fix the errors. And then run the command `npm start` to run the project.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Interface
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Figma UI Designs
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Login Page UI
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+   1.1. Login Page UI 1
 
-## Learn More
+   ![Login view design using figma](FIGMA%20UI%20Designs/Login%20Page%20UI%201.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   1.2. Login Page UI 2
+   ![Login view design using figma](FIGMA%20UI%20Designs/Login%20Page%20UI%202.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+2. Student Homepage UI
+   ![Student view design using figma](FIGMA%20UI%20Designs/Student%20Homepage%20UI.png)
 
-### Code Splitting
+3. Staff Homepage UI
+   ![Staff view design using figma](FIGMA%20UI%20Designs/Staff%20Homepage%20UI.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+4. Make Request UI
+   ![Make request view design using figma](FIGMA%20UI%20Designs/Make%20a%20Requesst%20UI.png)
 
-### Analyzing the Bundle Size
+## user Roles
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Student
+- Staff (Academic Staff)
+- Admin (AR Officer)
 
-### Making a Progressive Web App
+## User Stories
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Student
 
-### Advanced Configuration
+- As a student, I want to be able to log in to the system using my student ID and password.
+- As a student, I want to be able to view my requests.
+- As a student, I want to be able to make a request.
+- As a student, I want to be able to view the status of my request.
+- As a student, I want to be able to view the details of my request.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Staff (Academic Staff)
 
-### Deployment
+- As a staff, I want to be able to log in to the system using my staff ID and password.
+- As a staff, I want to be able to view all the requests.
+- As a staff, I want to be able to view the details of a request.
+- As a staff, I want to be able to approve a request.
+- As a staff, I want to be able to reject a request.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Admin (AR Officer)
 
-### `npm run build` fails to minify
+- As an admin, I want to be able to log in to the system using my staff ID and password.
+- As an admin, I want to be able to view all the requests.
+- As an admin, I want to be able to view the details of a request.
+- As an admin, I want to be able to approve a request.
+- As an admin, I want to be able to reject a request.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Use Cases
+
+### Student Use Cases
+
+- Student Login
+- Student Make a Request
+- Student View Request Status
+- Student View Request Details
+
+### Staff Use Cases
+
+- Staff Login
+- Staff View Request Details
+- Staff Approve Request
+- Staff Reject Request
+
+### Admin Use Cases
+
+- Admin Login
+- Admin View Request Details
+- Admin Approve Request
+- Admin Reject Request
+
+## Use Case Diagram
+
+![Use Case Diagram](/UML%20Diagrams/Use%20Case.jpg)
+
+## Activity Diagram
+
+![Activity Diagram](/UML%20Diagrams/Activity%20Diagram.png)
+
+## Database
+
+- We are using Firebase as our database for this project. We are using Firebase Storage and Firebase Firestore.
+
+### Firebase Storage
+
+- We are using Firebase Storage to store the documents that are uploaded by the students / staff/ admin.
+
+### Firebase Firestore
+
+- We are using Firebase Firestore to store the user details and the request details.

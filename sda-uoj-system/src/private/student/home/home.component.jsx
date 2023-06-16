@@ -10,6 +10,7 @@ const HomeComponent = () => {
       setauthenticated(loggedInUser);
     }
   }, []);
+
   if (!authenticated) {
     return <Navigate replace to="/sda-uoj-system" />;
   } else {
